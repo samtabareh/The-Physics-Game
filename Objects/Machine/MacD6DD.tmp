@@ -29,8 +29,5 @@ texture = ExtResource("1_afkxt")
 expand_mode = 2
 
 [node name="Connector" parent="." instance=ExtResource("3_vi7jp")]
-position = Vector2(-74, -8)
-rotation = 1.5708
-
-[node name="Connector2" parent="." instance=ExtResource("3_vi7jp")]
-position = Vector2(40, -42)
+position = Vector2(-40, -22)
+can_connect = null

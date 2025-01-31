@@ -1,18 +1,18 @@
-extends Main
+extends BaseHandler
 
-## { "Category": { 1: Level, 2: Level2 }, "Category2": { 1: Level } }
+## { "Category": { 1: LevelData, 2: LevelData2 }, "Category2": { 1: LevelData } }
 var Levels := {}
 ## Contains the path for levels not the levels
-var UnlockedLevels : Array[Level] = []
+var UnlockedLevels : Array[LevelData] = []
 
-var path = "res://Scenes/Levels/"
+const path = "res://Scenes/Levels/"
 
-@onready var current_level : Level :
+@onready var current_level : LevelData :
 	get:
 		var temp = get_tree().current_scene.scene_file_path
-		for category in Levels.values(): for level : Level in category.values():
-				if level.Path == temp:
-					current_level = level
+		for category in Levels.values(): for leveldata : LevelData in category.values():
+				if leveldata.Path == temp:
+					current_level = leveldata
 					return current_level
 		return
 
@@ -24,7 +24,7 @@ func init_levels():
 	var dir = DirAccess.open(path)
 	load_dir(dir)
 
-func next_level() -> Level:
+func next_level() -> LevelData:
 	var next = Levels[current_level.Category].get(current_level.Id+1)
 	if next == null: push_error("No other level exists")
 	return next
@@ -32,25 +32,25 @@ func next_level() -> Level:
 func get_level_from_path(path : String):
 	if Levels.is_empty(): return
 	for category in Levels.values():
-		for level : Level in category.values():
+		for level : LevelData in category.values():
 			if path == level.Path: return level
 
 func change_level(level):
-	if !level is Level && !level is String:
-		push_error("Invalid level given, expected a Level res or path String.")
-	
 	if level is String: get_tree().change_scene_to_file(level)
-	if level is Level:
-		if !UnlockedLevels.has(level): UnlockedLevels.append(level)
-		get_tree().change_scene_to_file(level.Path)
+	elif level is LevelData: get_tree().change_scene_to_file(level.Path)
+	else: push_error("Invalid level given, expected a LevelData res or path String.")
 
-func load_dir(dir : DirAccess):
+func unlock_level(level):
+	if !UnlockedLevels.has(level): UnlockedLevels.append(level)
+
+func load_dir(dir: DirAccess):
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
+			# Example: ["Scenes", "Levels", "Tutorial"]
 			var folder_name = dir.get_current_dir().split("/")
-			folder_name = folder_name[folder_name.size()-1]
+			folder_name = folder_name[-1]
 			
 			if file_name.get_extension() == "remap":
 				file_name = file_name.trim_suffix(".remap")
@@ -68,8 +68,8 @@ func load_dir(dir : DirAccess):
 					
 					if Levels.get(folder_name) == null:
 						Levels[folder_name] = {}
-					var level = Level.new().Level(int(num),file_name,folder_name,file_path)
-					Levels[folder_name][level.Id] = level
+					var leveldata = LevelData.LevelData(int(num),file_name,folder_name,file_path)
+					Levels[folder_name][leveldata.Id] = leveldata
 			else:
 				print_as("Found [color=magenta]directory[/color]: "+ file_name)
 				Levels[folder_name] = {}

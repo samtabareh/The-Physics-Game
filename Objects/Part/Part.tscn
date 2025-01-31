@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://gljefigrkxob"]
+
+[ext_resource type="Script" path="res://Objects/Part/Part.gd" id="1_jlex4"]
+[ext_resource type="PackedScene" uid="uid://lty4cna7bewi" path="res://Objects/Connector/Connector.tscn" id="2_i01qb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnsmk"]
+size = Vector2(64, 32)
+
+[node name="Part" type="Node2D"]
+script = ExtResource("1_jlex4")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_jnsmk")
+
+[node name="Texture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 2
+
+[node name="Connector" parent="." instance=ExtResource("2_i01qb")]
+unique_name_in_owner = true
+position = Vector2(8, 26)
+
+[connection signal="mouse_entered" from="Area" to="." method="_on_area_mouse_entered"]
+[connection signal="mouse_exited" from="Area" to="." method="_on_area_mouse_exited"]

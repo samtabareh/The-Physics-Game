@@ -1,11 +1,15 @@
 class_name Level extends Node
 
+@export var leveldata: LevelData
 
-# Called when the node enters the scene tree for the first time.
+@export var hud: HUD
+@export var machine: Machine
+
+
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	for node in get_children():
+		if node is Machine: machine = node
+		elif node is HUD: hud = node
+	
+	if machine and hud.machine_start_button: hud.machine_start_button.button_down.connect(machine.begin_movement)
+	else: push_error("Machine or Start button not set in level "+ LevelHandler.current_level.Name)

@@ -1,17 +1,28 @@
-[gd_scene load_steps=5 format=4 uid="uid://bbj0jrric34cg"]
+[gd_scene load_steps=8 format=4 uid="uid://cnajctpo3rfxs"]
 
-[ext_resource type="PackedScene" uid="uid://ccf0404g167ke" path="res://Objects/Map/Map.tscn" id="1_dfp23"]
-[ext_resource type="Script" path="res://Objects/Level/Level.gd" id="1_p6n38"]
-[ext_resource type="PackedScene" uid="uid://btub0bjkfrjei" path="res://Objects/Machine/Machine.tscn" id="3_inclg"]
-[ext_resource type="PackedScene" uid="uid://bbtpb3qirf85r" path="res://Objects/HUD/hud.tscn" id="4_sfmqj"]
+[ext_resource type="Script" path="res://Objects/Level/Level.gd" id="1_y2pi7"]
+[ext_resource type="PackedScene" uid="uid://ccf0404g167ke" path="res://Objects/Map/Map.tscn" id="2_qx0mi"]
+[ext_resource type="PackedScene" uid="uid://btub0bjkfrjei" path="res://Objects/Machine/Machine.tscn" id="3_qwbpt"]
+[ext_resource type="PackedScene" uid="uid://gljefigrkxob" path="res://Objects/Part/Part.tscn" id="4_5d1sk"]
+[ext_resource type="PackedScene" uid="uid://bbtpb3qirf85r" path="res://Objects/HUD/hud.tscn" id="4_08qte"]
+[ext_resource type="Resource" uid="uid://dslduqhdohp50" path="res://Resources/Parts Properties/Battery1.tres" id="5_hf4hl"]
+[ext_resource type="Resource" uid="uid://bp05xta23yjfc" path="res://Resources/Parts Properties/Force1.tres" id="6_5c0l3"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_p6n38")
+script = ExtResource("1_y2pi7")
 
-[node name="Map" parent="." instance=ExtResource("1_dfp23")]
+[node name="Map" parent="." instance=ExtResource("2_qx0mi")]
 tile_map_data = PackedByteArray("AAD//wAAAAAAAAEAAAAAAAAAAAABAAEAAAABAAAAAAABAAIAAAAAAAEAAAACAAEAAAD//wEAAAAAAAEAAAAAAAIAAAACAAEAAAD//wIAAAAAAAEAAAACAAAAAAABAAIAAAAAAAMAAAACAAEAAAADAAAAAAABAAIAAAAEAAAAAAABAAIAAAAAAP//AAABAAAAAAABAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAEAP//AAABAAAAAAAFAP//AAABAAAAAAAGAP//AAABAAAAAAAHAP//AAABAAAAAAAIAP//AAABAAAAAAAJAP//AAABAAAAAAAKAP//AAABAAAAAAALAP//AAABAAAAAAAMAP//AAABAAAAAAANAP//AAABAAAAAAAOAP//AAABAAAAAAAPAP//AAABAAAAAAAQAP//AAABAAAAAAARAP//AAABAAAAAAAAAAkAAAABAAEAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAAEAAkAAAABAAAAAAADAAkAAAABAAAAAAARAAkAAAABAAEAAAAQAAkAAAABAAAAAAAPAAkAAAABAAAAAAAOAAkAAAABAAAAAAANAAkAAAABAAAAAAAMAAkAAAABAAAAAAAKAAkAAAABAAAAAAALAAkAAAABAAAAAAAJAAkAAAABAAAAAAAHAAkAAAABAAAAAAAIAAkAAAABAAAAAAAGAAkAAAABAAAAAAAFAAkAAAABAAAAAAAAAAoAAAABAAIAAAABAAoAAAABAAIAAAACAAoAAAABAAIAAAADAAoAAAABAAIAAAAEAAoAAAABAAIAAAAFAAoAAAABAAIAAAAGAAoAAAABAAIAAAAHAAoAAAABAAIAAAAIAAoAAAABAAIAAAAJAAoAAAABAAIAAAAKAAoAAAABAAIAAAALAAoAAAABAAIAAAAMAAoAAAABAAIAAAANAAoAAAABAAIAAAAOAAoAAAABAAIAAAAPAAoAAAABAAIAAAAQAAoAAAABAAIAAAARAAoAAAABAAIAAAAAAAgAAAACAAEAAAAAAAcAAAACAAEAAAAAAAYAAAACAAEAAAAAAAUAAAACAAEAAAAAAAQAAAACAAEAAAARAAgAAAAAAAEAAAARAAcAAAAAAAEAAAARAAYAAAAAAAEAAAARAAUAAAAAAAEAAAARAAQAAAAAAAEAAAARAAMAAAAAAAEAAAARAAIAAAAAAAEAAAARAAEAAAAAAAEAAAARAAAAAAABAAEAAAD//woAAAAAAAIAAAD//wkAAAAAAAEAAAD//wgAAAAAAAEAAAD//wcAAAAAAAEAAAD//wYAAAAAAAEAAAD//wUAAAAAAAEAAAD//wMAAAAAAAEAAAD//wQAAAAAAAEAAAD/////AAAAAAAAAAASAAoAAAACAAIAAAASAAkAAAACAAEAAAASAAgAAAACAAEAAAASAAcAAAACAAEAAAASAAYAAAACAAEAAAASAAUAAAACAAEAAAASAAQAAAACAAEAAAASAAMAAAACAAEAAAASAAIAAAACAAEAAAASAAEAAAACAAEAAAASAAAAAAACAAEAAAASAP//AAACAAAAAAAFAAAAAAABAAIAAAAGAAAAAAABAAIAAAAOAAAAAAABAAIAAAAPAAAAAAABAAIAAAAQAAAAAAABAAIAAAANAAAAAAABAAIAAAAMAAAAAAABAAIAAAALAAAAAAABAAIAAAAKAAAAAAABAAIAAAAJAAAAAAABAAIAAAAIAAAAAAABAAIAAAAHAAAAAAABAAIAAAA=")
 
-[node name="Machine" parent="." instance=ExtResource("3_inclg")]
+[node name="Machine" parent="." instance=ExtResource("3_qwbpt")]
 position = Vector2(390, 530)
 
-[node name="HUD" parent="." instance=ExtResource("4_sfmqj")]
+[node name="Part" parent="." instance=ExtResource("4_5d1sk")]
+position = Vector2(204, 249)
+properties = ExtResource("5_hf4hl")
+
+[node name="Part2" parent="." instance=ExtResource("4_5d1sk")]
+position = Vector2(204, 321)
+properties = ExtResource("6_5c0l3")
+
+[node name="HUD" parent="." instance=ExtResource("4_08qte")]
