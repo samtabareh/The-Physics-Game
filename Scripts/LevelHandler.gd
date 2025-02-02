@@ -22,28 +22,10 @@ func _ready():
 func init_levels():
 	Levels = {}
 	var dir = DirAccess.open(path)
-	load_dir(dir)
+	load_levels(dir)
+	unlock_level(Levels["Tutorial"][1])
 
-func next_level() -> LevelData:
-	var next = Levels[current_level.Category].get(current_level.Id+1)
-	if next == null: push_error("No other level exists")
-	return next
-
-func get_level_from_path(path : String):
-	if Levels.is_empty(): return
-	for category in Levels.values():
-		for level : LevelData in category.values():
-			if path == level.Path: return level
-
-func change_level(level):
-	if level is String: get_tree().change_scene_to_file(level)
-	elif level is LevelData: get_tree().change_scene_to_file(level.Path)
-	else: push_error("Invalid level given, expected a LevelData res or path String.")
-
-func unlock_level(level):
-	if !UnlockedLevels.has(level): UnlockedLevels.append(level)
-
-func load_dir(dir: DirAccess):
+func load_levels(dir: DirAccess):
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
@@ -75,10 +57,32 @@ func load_dir(dir: DirAccess):
 				Levels[folder_name] = {}
 				
 				var new_dir = DirAccess.open(dir.get_current_dir()+"/"+file_name)
-				load_dir(new_dir)
+				load_levels(new_dir)
 			
 			file_name = dir.get_next()
 	else:
 		print_as("[color=red]An error occurred when trying to access the path. Error: "+
 		str(DirAccess.get_open_error())+ "[/color]")
 	Levels.erase("Levels")
+
+func next_level() -> LevelData:
+	var next = Levels[current_level.Category].get(current_level.Id+1)
+	if next == null: push_error("No other level exists")
+	return next
+
+func get_level_from_path(path : String):
+	if Levels.is_empty(): return
+	for category in Levels.values():
+		for level : LevelData in category.values():
+			if path == level.Path: return level
+
+func change_level(level):
+	if level is String:
+		get_tree().change_scene_to_file(level)
+	elif level is LevelData:
+		unlock_level(level)
+		get_tree().change_scene_to_file(level.Path)
+	else: push_error("Invalid level given, expected a LevelData res or path String.")
+
+func unlock_level(level: LevelData):
+	if !UnlockedLevels.has(level): UnlockedLevels.append(level)

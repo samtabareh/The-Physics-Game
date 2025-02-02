@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://btub0bjkfrjei"]
+[gd_scene load_steps=7 format=3 uid="uid://btub0bjkfrjei"]
 
 [ext_resource type="Script" path="res://Objects/Machine/Machine.gd" id="1_17y47"]
 [ext_resource type="Texture2D" uid="uid://c2hs5hiolv0q8" path="res://icon.svg" id="1_afkxt"]
 [ext_resource type="PackedScene" uid="uid://lty4cna7bewi" path="res://Objects/Connector/Connector.tscn" id="3_vi7jp"]
+[ext_resource type="PackedScene" uid="uid://bpfaqhmamd865" path="res://Objects/Machine/Wheel/Wheel.tscn" id="4_g2jdm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ni3ry"]
+friction = 0.75
+rough = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vgqa"]
 size = Vector2(128, 64)
 
-[node name="Machine" type="RigidBody2D"]
+[node name="Machine" type="RigidBody2D" node_paths=PackedStringArray("wheels")]
+physics_material_override = SubResource("PhysicsMaterial_ni3ry")
 script = ExtResource("1_17y47")
+wheels = [NodePath("Wheel1/Wheel"), NodePath("Wheel2/Wheel")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0vgqa")
@@ -28,9 +35,22 @@ grow_vertical = 2
 texture = ExtResource("1_afkxt")
 expand_mode = 2
 
+[node name="Wheel1" type="PinJoint2D" parent="."]
+position = Vector2(-34, 32)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+
+[node name="Wheel" parent="Wheel1" instance=ExtResource("4_g2jdm")]
+
+[node name="Wheel2" type="PinJoint2D" parent="."]
+position = Vector2(32, 32)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+
+[node name="Wheel" parent="Wheel2" instance=ExtResource("4_g2jdm")]
+
 [node name="Connector" parent="." instance=ExtResource("3_vi7jp")]
-position = Vector2(-74, -8)
-rotation = 1.5708
+position = Vector2(-40, -42)
 
 [node name="Connector2" parent="." instance=ExtResource("3_vi7jp")]
 position = Vector2(40, -42)

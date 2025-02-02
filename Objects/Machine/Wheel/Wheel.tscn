@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpfaqhmamd865"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aena4"]
+size = Vector2(1, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6tu48"]
+radius = 20.0
+
+[node name="Wheel" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_aena4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6tu48")

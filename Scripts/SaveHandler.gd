@@ -19,7 +19,7 @@ func save_game():
 	var json_string = JSON.stringify(save_dict)
 	
 	save.store_var(json_string)
-	print_as("Saved game file to: "+OS.get_user_data_dir()+"/save.BackLabs")
+	print_as("Saved game file to: "+OS.get_user_data_dir()+"/"+save_name)
 
 func load_game():
 	print_as("Loading save...")
@@ -41,10 +41,10 @@ func load_game():
 		
 		var data = json.get_data()
 		
-		# If the string is for ULs (Unlocked Levels)
 		for i in data.keys(): 
+			# If the string is for Unlocked Levels
 			if i == "Unlocked_Levels": for path in data[i]:
-				var leveldata : LevelData = LevelHandler.get_level_from_path(path)
+				var leveldata: LevelData = LevelHandler.get_level_from_path(path)
 				# The levels path matches the saved path AND the leveldata isnt already in the array
 				if !LevelHandler.UnlockedLevels.has(leveldata):
 					# Add the leveldata to the array

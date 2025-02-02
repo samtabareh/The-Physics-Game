@@ -33,10 +33,10 @@ func _on_main_menu_pressed():
 	LevelHandler.change_level("res://Scenes/Main Menu/Main.tscn")
 
 func _on_english_pressed():
-	TranslationSwitcher.UpdateUI("en")
+	TranslationSwitcher.update_ui("en")
 
 func _on_farsi_pressed():
-	TranslationSwitcher.UpdateUI("fa")
+	TranslationSwitcher.update_ui("fa")
 
 func _on_exit_pressed():
 	Main.exit()

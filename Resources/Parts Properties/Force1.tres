@@ -1,12 +1,8 @@
 [gd_resource type="Resource" script_class="MachinePartProperties" load_steps=2 format=3 uid="uid://bp05xta23yjfc"]
 
-[ext_resource type="Script" path="res://Objects/Part/MachinePartProperties.gd" id="1_xwy1w"]
+[ext_resource type="Script" path="res://Resources/Parts Properties/MachinePartProperties.gd" id="1_j4wd7"]
 
 [resource]
-script = ExtResource("1_xwy1w")
+script = ExtResource("1_j4wd7")
 name = "MP_F_1"
-mass = 15.0
-stored_joules = 0.0
-joules_usage = 1.0
-force = 10.0
-direction = Vector2(1, 0)
+properties_values = [10, 50, 0, 1]

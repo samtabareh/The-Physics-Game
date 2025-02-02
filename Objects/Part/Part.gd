@@ -16,7 +16,7 @@ var picked_up := false :
 func _ready():
 	InputHandler.mouse_pressed.connect(_on_mouse_pressed)
 	
-	texture.texture = properties.texture
+	#texture.texture = properties.texture
 	texture.set_anchors_preset(Control.PRESET_CENTER)
 
 func _on_mouse_pressed():

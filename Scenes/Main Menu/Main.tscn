@@ -21,24 +21,18 @@ layout_direction = 2
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -148.0
+offset_top = -100.0
 offset_right = 290.0
-offset_bottom = 148.0
+offset_bottom = 100.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="Start" type="Button" parent="CanvasLayer/Game"]
+[node name="Levels" type="Button" parent="CanvasLayer/Game"]
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("1_etxde")
-text = "Start"
-
-[node name="Tutorial" type="Button" parent="CanvasLayer/Game"]
-layout_mode = 2
-size_flags_vertical = 8
-theme = ExtResource("1_etxde")
-text = "Tutorial"
+text = "Levels"
 
 [node name="Exit" type="Button" parent="CanvasLayer/Game"]
 layout_mode = 2
@@ -101,20 +95,6 @@ theme = ExtResource("1_etxde")
 text = "Load
 "
 
-[node name="Levels" type="VBoxContainer" parent="CanvasLayer" groups=["UI"]]
-layout_direction = 2
-offset_right = 243.0
-offset_bottom = 96.0
-scale = Vector2(0.75, 0.75)
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="Levels" type="Button" parent="CanvasLayer/Levels"]
-layout_mode = 2
-size_flags_vertical = 0
-theme = ExtResource("1_etxde")
-text = "Levels"
-
 [node name="Settings" type="VBoxContainer" parent="CanvasLayer" groups=["UI"]]
 visible = false
 layout_direction = 2
@@ -130,12 +110,10 @@ layout_mode = 2
 theme = ExtResource("1_etxde")
 text = "Settings"
 
-[connection signal="pressed" from="CanvasLayer/Game/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CanvasLayer/Game/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="CanvasLayer/Game/Levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="CanvasLayer/Game/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Language/English" to="." method="_on_en_pressed"]
 [connection signal="pressed" from="CanvasLayer/Language/Farsi" to="." method="_on_fa_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save/Load" to="." method="_on_load_pressed"]
-[connection signal="pressed" from="CanvasLayer/Levels/Levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings/Settings" to="." method="_on_settings_pressed"]
