@@ -8,7 +8,7 @@ script = ExtResource("1_ib2ds")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" groups=["UI"]]
 visible = false
 offset_right = 121.0
 offset_bottom = 45.0
@@ -29,7 +29,7 @@ layout_direction = 2
 offset_right = 168.0
 offset_bottom = 96.0
 
-[node name="Main Menu" type="Button" parent="CanvasLayer/Game"]
+[node name="Main Menu" type="Button" parent="CanvasLayer/Game" groups=["UI"]]
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_5gmbv")

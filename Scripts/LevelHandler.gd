@@ -84,5 +84,8 @@ func change_level(level):
 		get_tree().change_scene_to_file(level.Path)
 	else: push_error("Invalid level given, expected a LevelData res or path String.")
 
+func is_level_unlocked(level: LevelData) -> bool:
+	return UnlockedLevels.has(level)
+
 func unlock_level(level: LevelData):
-	if !UnlockedLevels.has(level): UnlockedLevels.append(level)
+	if !is_level_unlocked(level): UnlockedLevels.append(level)

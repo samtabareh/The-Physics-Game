@@ -2,15 +2,16 @@ class_name Connector extends Node2D
 
 signal connection_changed(connector, old_connector)
 
-## The Connector that this has connected to (null if not connected)
+@onready var parent = get_parent()
+
+
+## The Connector that this has connected to | null if not connected
 var connected_to_connector: Connector = null
 var is_connected_to_connector: bool
-## If the connector can change its connection
-@export var can_connect := true
-## True if its a part of a machine, False if its a part of a MachinePart
 var is_machine: bool :
 	get: return parent is Machine
-@onready var parent = get_parent()
+## If the connector can change its connection
+var can_connect := true
 var picked_up: bool = false
 
 func _process(delta):
@@ -54,8 +55,10 @@ func _on_area_entered(area: Area2D):
 	var par = area.get_parent()
 	# Check if there is a parent (to avoid crashes) and
 	# if the collision is from another Connector and
-	# if the other Connector's parent is the reverse of ours (will accept if 
-	if par and par is Connector and par.is_machine != is_machine: set_connection(par)
+	# if the other Connector's parent is the reverse of ours
+	# and if the other connector isnt connected to anything
+	if par and par is Connector and par.is_machine != is_machine:
+		set_connection(par)
 
 func _on_area_exited(area: Area2D):
 	if !is_connected_to_connector: return

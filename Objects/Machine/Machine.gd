@@ -1,18 +1,26 @@
 class_name Machine extends RigidBody2D
 
+signal movement_start
+signal movement_tick(delta)
+signal movement_end
+
 enum { MASS, FORCE, JOULES_STORED, JOULES_USAGE }
 
 const DEFAULT_PROPERTIES := [ MASS, FORCE, JOULES_STORED, JOULES_USAGE ]
 const DEFAULT_VALUES := [ 10, 0, 0, 0 ]
-const SPEED := 10
+const SPEED := 15
 
 @export var wheels: Array[RigidBody2D]
 @export var connectors: Array[Connector]
 @export var parts: Array[MachinePartProperties]
+@export var camera: Camera2D
 @export var base_mass: float = DEFAULT_VALUES[MASS]
 @export var properties_values := DEFAULT_VALUES.duplicate()
 
-var is_moving := false
+var is_moving := false :
+	set(value):
+		for wheel: RigidBody2D in wheels: wheel.sleeping = !value
+		is_moving = value
 
 func _ready():
 	# Setup for connectors array
@@ -45,17 +53,23 @@ func connector_connection_changed(changed_connector: Connector, old_connector: C
 		for prop in DEFAULT_PROPERTIES: props_values[prop] += part_props.get_property(prop)
 	set_properties(DEFAULT_PROPERTIES, props_values)
 
-func begin_movement():
+func start_movement():
+	movement_start.emit()
+	# Wait for camera to zoom on machine
+	await get_tree().create_timer(1).timeout
 	is_moving = true
 
 func _physics_process(delta):
 	if !is_moving: return
-	if get_property(JOULES_STORED) - get_property(JOULES_USAGE) >= 0:
+	if get_property(JOULES_STORED) - get_property(JOULES_USAGE) >= 0 and get_property(JOULES_USAGE) != 0:
 		# rotate the wheels
 		for wheel in wheels: wheel.apply_torque_impulse(
 			(get_property(FORCE) + get_property(MASS)) / 2 * SPEED * delta * 60)
 		# Decrease joules stored
 		set_properties([JOULES_STORED], [-get_property(JOULES_USAGE)], true)
+		movement_tick.emit(delta)
+	else: end_movement()
 
 func end_movement():
 	is_moving = false
+	movement_end.emit()

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://chj7ancmvkg4h"]
+
+[ext_resource type="Script" path="res://Objects/Win Area/WinArea.gd" id="1_lorcj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq6rd"]
+size = Vector2(256, 128)
+
+[node name="WinArea" type="Area2D"]
+monitorable = false
+script = ExtResource("1_lorcj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dq6rd")
+
+[node name="WinTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

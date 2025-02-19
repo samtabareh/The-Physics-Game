@@ -1,21 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://btub0bjkfrjei"]
+[gd_scene load_steps=6 format=3 uid="uid://btub0bjkfrjei"]
 
 [ext_resource type="Script" path="res://Objects/Machine/Machine.gd" id="1_17y47"]
 [ext_resource type="Texture2D" uid="uid://c2hs5hiolv0q8" path="res://icon.svg" id="1_afkxt"]
 [ext_resource type="PackedScene" uid="uid://lty4cna7bewi" path="res://Objects/Connector/Connector.tscn" id="3_vi7jp"]
 [ext_resource type="PackedScene" uid="uid://bpfaqhmamd865" path="res://Objects/Machine/Wheel/Wheel.tscn" id="4_g2jdm"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ni3ry"]
-friction = 0.75
-rough = true
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vgqa"]
 size = Vector2(128, 64)
 
-[node name="Machine" type="RigidBody2D" node_paths=PackedStringArray("wheels")]
-physics_material_override = SubResource("PhysicsMaterial_ni3ry")
+[node name="Machine" type="RigidBody2D" node_paths=PackedStringArray("wheels", "camera")]
 script = ExtResource("1_17y47")
 wheels = [NodePath("Wheel1/Wheel"), NodePath("Wheel2/Wheel")]
+camera = NodePath("Camera2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0vgqa")
@@ -54,3 +50,8 @@ position = Vector2(-40, -42)
 
 [node name="Connector2" parent="." instance=ExtResource("3_vi7jp")]
 position = Vector2(40, -42)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true

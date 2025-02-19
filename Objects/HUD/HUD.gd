@@ -2,7 +2,10 @@ class_name HUD extends Control
 
 @onready var options_layer = $Layer
 @onready var hud_layer = $Layer2
-@onready var machine_start_button : Button = $Layer2/Start
+@onready var machine_start_button: Button = $Layer2/Start
+
+@onready var win_timer: Timer
+@onready var win_time_remaining: Label = $Layer2/WinTimeRemaining
 
 func _ready():
 	machine_start_button.set_anchors_and_offsets_preset(
@@ -11,11 +14,18 @@ func _ready():
 		10)
 
 func _input(event):
-	if Input.is_action_just_released("Exit"): set_options_layer_visible(false)
+	if Input.is_action_just_released("Exit"): set_options_layer_visible()
 
-func set_options_layer_visible(value: bool):
-	options_layer.visible = value
-	hud_layer.visible = !value
+func _process(delta):
+	if win_timer:
+		if win_timer.is_stopped(): win_time_remaining.hide()
+		win_time_remaining.text = "%s" % ceil(win_timer.time_left)
+
+# To turn off/on menu ui
+# If no value, then toggle between layers
+func set_options_layer_visible(value = null):
+	options_layer.visible = value if value else !options_layer.visible
+	hud_layer.visible = !value if value else !hud_layer.visible
 
 func _on_continue_pressed():
 	set_options_layer_visible(false)
@@ -25,6 +35,10 @@ func _on_menu_pressed():
 	set_options_layer_visible(true)
 	get_tree().paused = true
 
+func _on_win_timer_started(timer: Timer):
+	win_timer = timer
+	win_time_remaining.show()
+
 func _on_save_pressed():
 	SaveHandler.save_game()
 
@@ -33,10 +47,10 @@ func _on_main_menu_pressed():
 	LevelHandler.change_level("res://Scenes/Main Menu/Main.tscn")
 
 func _on_english_pressed():
-	TranslationSwitcher.update_ui("en")
+	TranslationHandler.update_ui("en")
 
 func _on_farsi_pressed():
-	TranslationSwitcher.update_ui("fa")
+	TranslationHandler.update_ui("fa")
 
 func _on_exit_pressed():
-	Main.exit()
+	MainHandler.exit()

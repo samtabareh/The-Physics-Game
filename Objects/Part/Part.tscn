@@ -13,6 +13,7 @@ size = Vector2(64, 32)
 script = ExtResource("1_jlex4")
 
 [node name="Area" type="Area2D" parent="."]
+monitorable = false
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Area"]
 unique_name_in_owner = true
@@ -36,5 +37,6 @@ stretch_mode = 2
 unique_name_in_owner = true
 position = Vector2(8, 26)
 
+[connection signal="input_event" from="Area" to="." method="_on_area_input"]
 [connection signal="mouse_entered" from="Area" to="." method="_on_area_mouse_entered"]
 [connection signal="mouse_exited" from="Area" to="." method="_on_area_mouse_exited"]

@@ -1,7 +1,7 @@
 extends Node2D
 
 func _on_exit_pressed():
-	Main.exit()
+	MainHandler.exit()
 
 func _on_levels_pressed():
 	LevelHandler.change_level("res://Scenes/Main Menu/Levels.tscn")
@@ -16,7 +16,7 @@ func _on_load_pressed():
 	SaveHandler.load_game()
 
 func _on_en_pressed():
-	TranslationSwitcher.update_ui("en")
+	TranslationHandler.update_ui("en")
 
 func _on_fa_pressed():
-	TranslationSwitcher.update_ui("fa")
+	TranslationHandler.update_ui("fa")
