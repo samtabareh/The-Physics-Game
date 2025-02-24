@@ -1,0 +1,20 @@
+;en;fa
+None;;
+English;English;انگلیسی
+Farsi;Farsi;فارسی
+Start;Start;شروع
+Continue;Continue;ادامه
+Exit;Exit;خروج
+Menu;Menu;منو
+Main Menu;Main Menu;منو اصلی
+Levels;Levels;مرحله ها
+Save;Save;ذخیره
+Load;Load;بارگیری
+Settings;Settings;تنظیمات
+Resolution;Resolution;رزولوشن
+MP_F_1;Small Motor;موتور کوچک
+MP_B_1;Small Fuel Tank;مخزن کوچک
+Part_Tooltip_Mass;Mass: {0}Kg;جرم: {0}Kg
+Part_Tooltip_Force;Force: {0}N;نیرو: {0}N
+Part_Tooltip_Joules_Stored;Joules Stored: {0}J;ژول های ذخیره شده: {0}J
+Part_Tooltip_Joules_Usage;Joules Usage: {0}J/s;ژول مورد نیاز: {0}J/s

@@ -93,6 +93,10 @@ dev-ual={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Localization.en.translation", "res://Localization.fa.translation")
+
 [physics]
 
 common/physics_ticks_per_second=120
