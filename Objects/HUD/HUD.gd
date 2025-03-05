@@ -1,11 +1,11 @@
 class_name HUD extends Control
 
-@onready var options_layer = $Layer
-@onready var hud_layer = $Layer2
-@onready var machine_start_button: Button = $Layer2/Start
+@onready var options_layer = $Menu
+@onready var hud_layer = $Main
+@onready var machine_start_button: Button = $Main/Start
 
 @onready var win_timer: Timer
-@onready var win_time_remaining: Label = $Layer2/WinTimeRemaining
+@onready var win_time_remaining: Label = $Main/WinTimeRemaining
 
 func _ready():
 	machine_start_button.set_anchors_and_offsets_preset(
@@ -54,3 +54,6 @@ func _on_farsi_pressed():
 
 func _on_exit_pressed():
 	MainHandler.exit()
+
+func _on_collection_pressed():
+	

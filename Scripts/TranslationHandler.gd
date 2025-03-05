@@ -2,9 +2,14 @@ extends BaseHandler
 
 signal updated_lang(locale: String)
 
+const default_locale = "fa"
+
 var locale : String :
 	get:
 		return TranslationServer.get_locale()
+
+func _ready():
+	update_ui(default_locale)
 
 func _process(delta):
 	update_ui(locale)
@@ -17,6 +22,7 @@ func update_ui(locale: String):
 			nodes.append_array(node.get_children())
 		if node is BaseButton || node is Label:
 			node.text = tr(node.name)
+	
 	# Output to log
 	if get_stack().size() > 1:
 		var Id : String = get_stack()[1]["source"]

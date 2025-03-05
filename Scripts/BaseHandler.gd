@@ -9,6 +9,7 @@ func print_as(Message):
 	"green" if id == "SaveHandler" else 
 	"orange" if id == "TranslationSwitcher" else
 	"purple" if id == "LevelHandler" else
+	"orange" if id == "TypesLoader" else
 	"yellow")
 	
 	print_rich("[color=%s][%s][/color] %s" % [color, id, Message])

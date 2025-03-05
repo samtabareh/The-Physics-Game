@@ -1,6 +1,6 @@
 extends BaseHandler
 
-var picked_up_part : MachinePart
+var picked_up_part: MachinePart
 
 func _input(event):
 	if Input.is_action_just_released("Click"):
