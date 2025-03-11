@@ -1,5 +1,7 @@
 class_name MachinePart extends Node2D
 
+signal show_info(part: MachinePartProperties)
+
 @export var properties := MachinePartProperties.new()
 ## The position it would reset to when its let go of and its not connected to anything
 @onready var first_pos := position
@@ -23,7 +25,7 @@ func drop():
 func _on_area_input(viewport, event, shape_idx):
 	# Info of part
 	if (event is InputEventScreenTouch and event.double_tap) or (Input.is_action_just_pressed("Info")):
-		print("HALLO")
+		show_info.emit(properties)
 	
 	# Grab part
 	elif Input.is_action_just_pressed("Click"):

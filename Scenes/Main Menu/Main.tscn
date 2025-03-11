@@ -34,6 +34,13 @@ size_flags_vertical = 0
 theme = ExtResource("1_etxde")
 text = "Levels"
 
+[node name="Collection" type="Button" parent="CanvasLayer/Game"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_etxde")
+text = "Collection
+"
+
 [node name="Exit" type="Button" parent="CanvasLayer/Game"]
 layout_mode = 2
 size_flags_vertical = 0
@@ -111,6 +118,7 @@ theme = ExtResource("1_etxde")
 text = "Settings"
 
 [connection signal="pressed" from="CanvasLayer/Game/Levels" to="." method="_on_levels_pressed"]
+[connection signal="pressed" from="CanvasLayer/Game/Collection" to="." method="_on_collection_pressed"]
 [connection signal="pressed" from="CanvasLayer/Game/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Language/English" to="." method="_on_en_pressed"]
 [connection signal="pressed" from="CanvasLayer/Language/Farsi" to="." method="_on_fa_pressed"]

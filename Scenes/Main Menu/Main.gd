@@ -6,6 +6,9 @@ func _on_exit_pressed():
 func _on_levels_pressed():
 	LevelHandler.change_level("res://Scenes/Main Menu/Levels.tscn")
 
+func _on_collection_pressed():
+	Collection.create_new(self)
+
 func _on_settings_pressed():
 	LevelHandler.change_level("res://Scenes/Main Menu/Settings.tscn")
 

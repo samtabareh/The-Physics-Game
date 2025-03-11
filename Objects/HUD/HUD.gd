@@ -1,8 +1,10 @@
-class_name HUD extends Control
+class_name HUD extends Node2D
 
 @onready var options_layer = $Menu
 @onready var hud_layer = $Main
 @onready var machine_start_button: Button = $Main/Start
+@onready var left_move: TouchScreenButton = $Main/Left
+@onready var right_move: TouchScreenButton = $Main/Right
 
 @onready var win_timer: Timer
 @onready var win_time_remaining: Label = $Main/WinTimeRemaining
@@ -12,6 +14,7 @@ func _ready():
 		Control.PRESET_CENTER_BOTTOM,
 		Control.PRESET_MODE_KEEP_SIZE,
 		10)
+	
 
 func _input(event):
 	if Input.is_action_just_released("Exit"): set_options_layer_visible()
@@ -35,6 +38,9 @@ func _on_menu_pressed():
 	set_options_layer_visible(true)
 	get_tree().paused = true
 
+func show_end_level_menu(won: bool, score: float = 0):
+	pass
+
 func _on_win_timer_started(timer: Timer):
 	win_timer = timer
 	win_time_remaining.show()
@@ -56,4 +62,8 @@ func _on_exit_pressed():
 	MainHandler.exit()
 
 func _on_collection_pressed():
-	
+	Collection.create_new(self)
+
+func show_part_collection(part: MachinePartProperties):
+	var c := Collection.create_new(self)
+	c.open_part(part)

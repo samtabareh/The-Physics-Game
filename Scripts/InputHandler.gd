@@ -11,8 +11,7 @@ func _input(event):
 	
 	# ----Dev----
 	if Input.is_action_just_released("dev"):
-		MainHandler.set_dev_mode(!MainHandler.is_dev)
-		push_warning('"is_dev": ', MainHandler.is_dev)
+		MainHandler.is_dev = !MainHandler.is_dev
 	if Input.is_action_just_released("dev-rst") && MainHandler.is_dev: SaveHandler.delete_save()
 
 func pick_up_part(part: MachinePart):

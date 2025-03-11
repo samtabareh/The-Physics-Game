@@ -14,9 +14,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -295.5
+offset_left = -198.0
 offset_top = -198.0
-offset_right = 295.5
+offset_right = 198.0
 offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -28,10 +28,10 @@ metadata/_tab_index = 0
 
 [node name="Selectors" type="VBoxContainer" parent="TabContainer/Parts"]
 layout_mode = 1
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 124.0
-offset_bottom = 53.0
+offset_left = 50.0
+offset_top = 40.0
+offset_right = 144.0
+offset_bottom = 63.0
 
 [node name="Base" type="RichTextLabel" parent="TabContainer/Parts/Selectors"]
 visible = false
@@ -42,6 +42,7 @@ bbcode_enabled = true
 text = "[url=\"INVALID\"]- INVALID[/url]"
 fit_content = true
 autowrap_mode = 0
+text_direction = 3
 
 [node name="Descriptions" type="Control" parent="TabContainer/Parts"]
 anchors_preset = 0
@@ -51,21 +52,25 @@ offset_bottom = 40.0
 [node name="Base" type="RichTextLabel" parent="TabContainer/Parts/Descriptions"]
 visible = false
 layout_mode = 0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 563.0
-offset_bottom = 300.0
+offset_left = 50.0
+offset_top = 40.0
+offset_right = 583.0
+offset_bottom = 310.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 bbcode_enabled = true
+text = "Base"
 fit_content = true
 autowrap_mode = 0
+text_direction = 3
 
 [node name="Back" type="Button" parent="TabContainer/Parts"]
 layout_mode = 2
 offset_left = 15.0
-offset_right = 33.0
-offset_bottom = 31.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 19
 text = "<"
 
 [node name="Skins" type="Label" parent="TabContainer"]

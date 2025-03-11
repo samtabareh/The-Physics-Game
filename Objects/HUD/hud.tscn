@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbtpb3qirf85r"]
+[gd_scene load_steps=8 format=3 uid="uid://bbtpb3qirf85r"]
 
 [ext_resource type="Script" path="res://Objects/HUD/HUD.gd" id="1_3f1ed"]
 [ext_resource type="Theme" uid="uid://b87w0gxls3wqd" path="res://Resources/Themes/Button.tres" id="2_ldu36"]
+[ext_resource type="Texture2D" uid="uid://cifnwbhq6famy" path="res://Textures/UI/Left_Move_Btn.png" id="3_qtiyy"]
+[ext_resource type="Texture2D" uid="uid://choxxscig7n0h" path="res://Textures/UI/Right_Move_Btn.png" id="4_x8twb"]
 
 [sub_resource type="Theme" id="Theme_xbi6v"]
 Button/font_sizes/font_size = 32
@@ -9,20 +11,17 @@ Button/font_sizes/font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_fsih8"]
 font_size = 42
 
-[node name="Hud" type="Control"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vucqy"]
+size = Vector2(70, 70)
+
+[node name="Hud" type="Node2D"]
 process_mode = 3
-layout_direction = 2
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_3f1ed")
 
 [node name="Menu" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="Grey" type="ColorRect" parent="Menu"]
+[node name="Background" type="ColorRect" parent="Menu"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -103,7 +102,6 @@ text = "Farsi
 "
 
 [node name="Main" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Menu" type="Button" parent="Main" groups=["UI"]]
 anchors_preset = 5
@@ -149,6 +147,18 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "3"
 label_settings = SubResource("LabelSettings_fsih8")
+
+[node name="Left" type="TouchScreenButton" parent="Main"]
+visible = false
+position = Vector2(40, 509)
+texture_normal = ExtResource("3_qtiyy")
+shape = SubResource("RectangleShape2D_vucqy")
+
+[node name="Right" type="TouchScreenButton" parent="Main"]
+visible = false
+position = Vector2(1049, 509)
+texture_normal = ExtResource("4_x8twb")
+shape = SubResource("RectangleShape2D_vucqy")
 
 [node name="LevelEnd" type="CanvasLayer" parent="."]
 visible = false

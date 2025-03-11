@@ -70,11 +70,10 @@ func next_level() -> LevelData:
 	if next == null: push_error("No other level exists")
 	return next
 
-func get_level_from_path(path : String):
-	if Levels.is_empty(): return
-	for category in Levels.values():
-		for level : LevelData in category.values():
-			if path == level.Path: return level
+func get_level_from_path(path : String) -> LevelData:
+	if !Levels.is_empty(): for category in Levels.values(): for level: LevelData in category.values():
+		if path == level.Path: return level
+	return
 
 func change_level(level):
 	if level is String:

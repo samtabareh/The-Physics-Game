@@ -44,6 +44,7 @@ func load_dir(dir : DirAccess):
 			file_name = dir.get_next()
 
 #region Dict for loaded Resources
+## Example: { "Battery1": (MachinePartProperties) }
 var part_properties := {}
 
 #endregion

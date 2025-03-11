@@ -29,7 +29,9 @@ func update_ui(locale: String):
 		Id = Id.get_file().get_slice(".", 0)
 		if Id != name: print_as("Changed language to: %s | %s" %
 		[TranslationServer.get_locale_name(locale), locale])
-	updated_lang.emit(locale)
+		
+		updated_lang.emit(locale)
+	
 
 ## Used to translate a single string
 ## With an optional parameter for variables that could be in the string

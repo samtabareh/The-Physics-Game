@@ -1,19 +1,27 @@
 class_name Level extends Node
 
+enum { MISSING_NODE, MISSING_EXPORT }
+
+#region On-Readies
 @onready var hud: HUD
 @onready var machine: Machine
 @onready var win_area: WinArea
 @onready var camera: Camera2D
 
 @onready var level_timer := Timer.new()
+#endregion
 
+## Parts of the level (mainly used for referencing)
+@export var level_parts: Array[MachinePart] = []
+## Average time to beat level
 @export var avg_time: float
 
 var time_spent := 0
 var score := 3.0
 
 func _ready():
-	if !avg_time: push_error("No avg_time set for level %s %s" % [LevelHandler.current_level.Category, LevelHandler.current_level.Name])
+	if level_parts.is_empty(): report_missing(MISSING_EXPORT, "Level Parts")
+	if !avg_time: report_missing(MISSING_EXPORT, "Avg Time")
 	
 	# Find the machine and hud and set their references
 	for node in get_children():
@@ -27,12 +35,23 @@ func _ready():
 	add_child(level_timer)
 	
 	if camera: pass
-	else: report_missing_node("Camera2D")
+	else: report_missing(MISSING_NODE, "Camera2D")
 	
-	# Connect the start button to the movement function
+	if hud:
+		
+		# Setting up part info connection
+		for part in level_parts:
+			part.show_info.connect(hud.show_part_collection)
+		
+	else: report_missing(MISSING_NODE, "HUD")
+	
 	if machine:
 		machine.movement_start.connect(func ():
 			level_timer.start()
+			hud.machine_start_button.visible = false
+			if hud:
+				hud.left_move.show()
+				hud.right_move.show()
 			
 			# Smoothly zooms and moves the camera to the machine, then switches cameras
 			var tween = create_tween()
@@ -41,21 +60,34 @@ func _ready():
 			await tween.finished
 			machine.camera.enabled = true
 			camera.enabled = false
-			)
+		)
 		
+		machine.movement_end.connect(func ():
+			if hud:
+				hud.left_move.hide()
+				hud.right_move.hide()
+		)
+		
+		# Connect the start button to the movement function
 		if hud: hud.machine_start_button.button_down.connect(machine.start_movement)
-		else: report_missing_node("HUD")
-	else: report_missing_node("Machine")
+	else: report_missing(MISSING_NODE, "Machine")
 	
 	if win_area:
 		win_area.win_timer.timeout.connect(has_player_won.bind(win_area.machine_in_area))
 		if hud: win_area.win_timer_started.connect(hud._on_win_timer_started)
-		else: report_missing_node("HUD")
-	else: report_missing_node("WinArea")
+	else: report_missing(MISSING_NODE, "WinArea")
 
-func report_missing_node(node_name: String):
-	push_error("%s not found in level %s %s" % [node_name, LevelHandler.current_level.Category, LevelHandler.current_level.Name])
-	
+func _process(delta):
+	if hud and machine:
+		if hud.left_move.is_pressed(): machine.move(-1)
+		if hud.right_move.is_pressed(): machine.move(1)
+
+func report_missing(type: int, missing_name: String):
+	if type == MISSING_NODE:
+		push_error("%s not found in level %s %s" % [missing_name, LevelHandler.current_level.Category, LevelHandler.current_level.Name])
+	if type == MISSING_EXPORT:
+		push_error("%s not set in level %s %s" % [missing_name, LevelHandler.current_level.Category, LevelHandler.current_level.Name])
+
 func has_player_won(value: bool):
 	var extra_time := level_timer.time_left
 	level_timer.stop()
@@ -72,5 +104,7 @@ func has_player_won(value: bool):
 		if leftover_time >= 0: score -= 0.25
 		# If the time is even higher, decrease the score even more
 		if leftover_time >= avg_time/2: score -= 0.75
+		
+		hud.show_end_level_menu(true, score)
 	# The player didnt win
-	else: pass
+	else: hud.show_end_level_menu(false)

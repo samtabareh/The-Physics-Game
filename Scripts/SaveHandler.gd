@@ -8,12 +8,16 @@ func _ready():
 	SaveHandler.load_game()
 
 func save_game():
-	var save_dict = {
-		"Unlocked_Levels": []
+	var save_dict: Dictionary = {
+		"Unlocked_Levels": [],
+		"Unlocked_Parts": ["MP_B_1", "MP_F_1"]
 	}
 	
 	for leveldata in LevelHandler.UnlockedLevels:
 		save_dict["Unlocked_Levels"].append(leveldata.Path)
+	
+	for part in MainHandler.unlocked_parts:
+		save_dict["Unlocked_Parts"].append(part.name)
 	
 	var save = FileAccess.open(save_path, FileAccess.WRITE)
 	var json_string = JSON.stringify(save_dict)
@@ -45,10 +49,11 @@ func load_game():
 			# If the string is for Unlocked Levels
 			if i == "Unlocked_Levels": for path in data[i]:
 				var leveldata: LevelData = LevelHandler.get_level_from_path(path)
-				# The levels path matches the saved path AND the leveldata isnt already in the array
-				if !LevelHandler.UnlockedLevels.has(leveldata):
-					# Add the leveldata to the array
-					LevelHandler.UnlockedLevels.append(leveldata)
+				LevelHandler.unlock_level(leveldata)
+			
+			elif i == "Unlocked_Parts": for key in data[i]:
+				var part: MachinePartProperties = MainHandler.get_part_prop_from_name(key)
+				MainHandler.unlock_part(part)
 	
 	print_as("Loaded save successfuly!")
 
