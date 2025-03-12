@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://btub0bjkfrjei"]
+[gd_scene load_steps=8 format=3 uid="uid://btub0bjkfrjei"]
 
 [ext_resource type="Script" path="res://Objects/Machine/Machine.gd" id="1_17y47"]
 [ext_resource type="Texture2D" uid="uid://c2hs5hiolv0q8" path="res://icon.svg" id="1_afkxt"]
@@ -9,7 +9,10 @@
 size = Vector2(128, 64)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a5la"]
-bg_color = Color(1.54018e-06, 0.725884, 0.185089, 1)
+bg_color = Color(0, 0.72549, 0.184314, 1)
+
+[sub_resource type="Theme" id="Theme_ooln8"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_1a5la")
 
 [node name="Machine" type="RigidBody2D" node_paths=PackedStringArray("wheels", "camera")]
 script = ExtResource("1_17y47")
@@ -34,8 +37,8 @@ grow_vertical = 2
 texture = ExtResource("1_afkxt")
 expand_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="TextureRect"]
-layout_mode = 1
+[node name="JoulesDisplay" type="ProgressBar" parent="."]
+auto_translate_mode = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -47,8 +50,28 @@ offset_right = 51.5
 offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_1a5la")
-value = 100.0
+theme = SubResource("Theme_ooln8")
+step = 0.0
+show_percentage = false
+
+[node name="JoulesText" type="Label" parent="."]
+auto_translate_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.5
+offset_top = -11.5
+offset_right = 14.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Wheel1" type="PinJoint2D" parent="."]
 position = Vector2(-34, 32)

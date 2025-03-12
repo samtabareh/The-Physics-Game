@@ -3,6 +3,7 @@ None;;
 English;English;انگلیسی
 Farsi;Farsi;فارسی
 Start;Start;شروع
+Restart;Restart;دوباره
 Continue;Continue;ادامه
 Exit;Exit;خروج
 Menu;Menu;منو
@@ -19,3 +20,13 @@ Part_Tooltip_Mass;Mass: {0}Kg;جرم: {0}Kg
 Part_Tooltip_Force;Force: {0}N;نیرو: {0}N
 Part_Tooltip_Joules_Stored;Joules Stored: {0}J;ژول های ذخیره شده: {0}J
 Part_Tooltip_Joules_Usage;Joules Usage: {0}J/s;ژول مورد نیاز: {0}J/s
+Beginner;Beginner;تازه کار
+Beginner 1;Beginner 1;تازه کار 1
+Beginner 2;Beginner 2;تازه کار 2
+Beginner 3;Beginner 3;تازه کار 3
+Tutorial;Tutorial;آموزش
+Tutorial 1;Tutorial 1;آموزش 1
+Tutorial 2;Tutorial 2;آموزش 2
+Tutorial 3;Tutorial 3;آموزش 3
+Tutorial 4;Tutorial 4;آموزش 4
+Coming soon...;Coming soon...;به زودی...

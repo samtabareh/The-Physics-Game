@@ -132,6 +132,23 @@ theme = SubResource("Theme_xbi6v")
 text = "Start
 "
 
+[node name="Restart" type="Button" parent="Main" groups=["UI"]]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.5
+offset_top = -53.0
+offset_right = 48.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 0
+theme = SubResource("Theme_xbi6v")
+text = "Restart
+"
+
 [node name="WinTimeRemaining" type="Label" parent="Main"]
 visible = false
 anchors_preset = 8
@@ -171,3 +188,4 @@ visible = false
 [connection signal="pressed" from="Menu/Language/English" to="." method="_on_english_pressed"]
 [connection signal="pressed" from="Menu/Language/Farsi" to="." method="_on_farsi_pressed"]
 [connection signal="pressed" from="Main/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Main/Restart" to="." method="_on_restart_pressed"]

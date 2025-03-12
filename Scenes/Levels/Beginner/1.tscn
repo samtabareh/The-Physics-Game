@@ -9,8 +9,9 @@
 [ext_resource type="Resource" uid="uid://dslduqhdohp50" path="res://Resources/Parts Properties/Battery1.tres" id="6_lwsix"]
 [ext_resource type="Resource" uid="uid://bp05xta23yjfc" path="res://Resources/Parts Properties/Force1.tres" id="7_ox1m3"]
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("level_parts")]
 script = ExtResource("1_1typl")
+level_parts = [NodePath("Part"), NodePath("Part2")]
 avg_time = 10.0
 
 [node name="Map" parent="." instance=ExtResource("2_hc4xs")]

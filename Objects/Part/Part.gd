@@ -24,7 +24,7 @@ func drop():
 
 func _on_area_input(viewport, event, shape_idx):
 	# Info of part
-	if (event is InputEventScreenTouch and event.double_tap) or (Input.is_action_just_pressed("Info")):
+	if event is InputEventScreenTouch and event.double_tap:
 		show_info.emit(properties)
 	
 	# Grab part

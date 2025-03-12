@@ -39,9 +39,6 @@ func _ready():
 		
 		descriptions.add_child(description)
 
-func _input(event):
-	if Input.is_action_just_pressed("Exit"): _on_back_pressed()
-
 func _exit_tree():
 	MainHandler.open_collection = null
 

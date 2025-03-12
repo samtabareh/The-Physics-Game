@@ -11,22 +11,22 @@ enum { MISSING_NODE, MISSING_EXPORT }
 @onready var level_timer := Timer.new()
 #endregion
 
-## Parts of the level (mainly used for referencing)
-@export var level_parts: Array[MachinePart] = []
 ## Average time to beat level
 @export var avg_time: float
 
+## Parts of the level (mainly used for referencing)
+var level_parts: Array[MachinePart] = []
 var time_spent := 0
 var score := 3.0
 
 func _ready():
-	if level_parts.is_empty(): report_missing(MISSING_EXPORT, "Level Parts")
 	if !avg_time: report_missing(MISSING_EXPORT, "Avg Time")
 	
 	# Find the machine and hud and set their references
 	for node in get_children():
 		if node is HUD: hud = node
 		elif node is Machine: machine = node
+		elif node is MachinePart: level_parts.append(node)
 		elif node is WinArea: win_area = node
 		elif node is Camera2D: camera = node
 	
@@ -38,7 +38,6 @@ func _ready():
 	else: report_missing(MISSING_NODE, "Camera2D")
 	
 	if hud:
-		
 		# Setting up part info connection
 		for part in level_parts:
 			part.show_info.connect(hud.show_part_collection)
@@ -46,6 +45,8 @@ func _ready():
 	else: report_missing(MISSING_NODE, "HUD")
 	
 	if machine:
+		machine.out_of_joules.connect(out_of_joules)
+		
 		machine.movement_start.connect(func ():
 			level_timer.start()
 			hud.machine_start_button.visible = false
@@ -69,7 +70,11 @@ func _ready():
 		)
 		
 		# Connect the start button to the movement function
-		if hud: hud.machine_start_button.button_down.connect(machine.start_movement)
+		if hud:
+			hud.machine_start_button.button_down.connect(machine.start_movement)
+			machine.out_of_joules.connect(func ():
+				hud.restart_button.show()
+				)
 	else: report_missing(MISSING_NODE, "Machine")
 	
 	if win_area:
@@ -87,6 +92,9 @@ func report_missing(type: int, missing_name: String):
 		push_error("%s not found in level %s %s" % [missing_name, LevelHandler.current_level.Category, LevelHandler.current_level.Name])
 	if type == MISSING_EXPORT:
 		push_error("%s not set in level %s %s" % [missing_name, LevelHandler.current_level.Category, LevelHandler.current_level.Name])
+
+func out_of_joules():
+	pass
 
 func has_player_won(value: bool):
 	var extra_time := level_timer.time_left
