@@ -13,7 +13,7 @@ config_version=5
 config/name="Machine Maker"
 config/version="0.0.4"
 run/main_scene="res://Scenes/Main Menu/Main.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 

@@ -177,7 +177,7 @@ position = Vector2(1049, 509)
 texture_normal = ExtResource("4_x8twb")
 shape = SubResource("RectangleShape2D_vucqy")
 
-[node name="LevelEnd" type="CanvasLayer" parent="."]
+[node name="Level End" type="CanvasLayer" parent="."]
 visible = false
 
 [connection signal="pressed" from="Menu/Game/Continue" to="." method="_on_continue_pressed"]
