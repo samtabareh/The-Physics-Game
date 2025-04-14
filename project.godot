@@ -11,11 +11,14 @@ config_version=5
 [application]
 
 config/name="Machine Maker"
-config/version="0.0.4"
+config/name_localized={
+"fa_IR": "ماشین ساز"
+}
+config/version="0.0.5"
 run/main_scene="res://Scenes/Main Menu/Main.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="uid://bf28xd5ew21u"
 
 [autoload]
 
@@ -98,6 +101,7 @@ pointing/emulate_touch_from_mouse=true
 [internationalization]
 
 locale/translations=PackedStringArray("res://Localization.en.translation", "res://Localization.fa.translation")
+locale/locale_filter_mode=0
 
 [physics]
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MachinePartProperties" load_steps=2 format=3 uid="uid://dslduqhdohp50"]
 
-[ext_resource type="Script" path="res://Resources/Parts Properties/MachinePartProperties.gd" id="1_lt2ms"]
+[ext_resource type="Script" uid="uid://bnwnjb5mrfq6d" path="res://Resources/Parts Properties/MachinePartProperties.gd" id="1_lt2ms"]
 
 [resource]
 script = ExtResource("1_lt2ms")

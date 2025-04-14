@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ce2b3dmdljh47"]
 
-[ext_resource type="Script" path="res://Objects/Collection/Collection.gd" id="1_gwthn"]
+[ext_resource type="Script" uid="uid://dlqqij6y8ma3l" path="res://Objects/Collection/Collection.gd" id="1_gwthn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gehqo"]
 font_size = 28

@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpfaqhmamd865"]
 
+[ext_resource type="Texture2D" uid="uid://d2jlassiqeh0l" path="res://Textures/Machine/Wheel/Machine_wheel.png" id="1_ia3u5"]
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vr2ps"]
 friction = 0.75
 rough = true
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aena4"]
-size = Vector2(1, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6tu48"]
 radius = 20.0
@@ -15,7 +14,7 @@ mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_vr2ps")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_aena4")
+texture = ExtResource("1_ia3u5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6tu48")

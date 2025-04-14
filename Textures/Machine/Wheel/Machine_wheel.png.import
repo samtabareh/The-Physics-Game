@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://67vhmw4ctvrl"
-path="res://.godot/imported/Grass_Dirt.png-af45202daa093243b40d2a996b94c086.ctex"
+uid="uid://d2jlassiqeh0l"
+path="res://.godot/imported/Machine_wheel.png-28f684ca57f3350b3cae4250211b8902.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Tiles/Grass_Dirt.png"
-dest_files=["res://.godot/imported/Grass_Dirt.png-af45202daa093243b40d2a996b94c086.ctex"]
+source_file="res://Textures/Machine/Wheel/Machine_wheel.png"
+dest_files=["res://.godot/imported/Machine_wheel.png-28f684ca57f3350b3cae4250211b8902.ctex"]
 
 [params]
 

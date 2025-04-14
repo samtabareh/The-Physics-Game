@@ -8,9 +8,6 @@ class_name HUD extends Node2D
 @onready var left_move: TouchScreenButton = $Main/Left
 @onready var right_move: TouchScreenButton = $Main/Right
 @onready var restart_button: Button = $Main/Restart
-
-@onready var win_timer: Timer
-@onready var win_time_remaining: Label = $Main/WinTimeRemaining
 #endregion
 
 func _ready():
@@ -21,11 +18,6 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_released("Exit"): set_options_layer_visible()
-
-func _process(delta):
-	if win_timer:
-		if win_timer.is_stopped(): win_time_remaining.hide()
-		win_time_remaining.text = "%s" % ceil(win_timer.time_left)
 
 # To turn off/on menu ui
 # If no value, then toggle between layers
@@ -46,10 +38,6 @@ func _on_restart_pressed():
 
 func show_end_level_menu(won: bool, score: float = 0):
 	pass
-
-func _on_win_timer_started(timer: Timer):
-	win_timer = timer
-	win_time_remaining.show()
 
 func _on_save_pressed():
 	SaveHandler.save_game()

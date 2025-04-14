@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cyh64wj7erh5i"]
 
-[ext_resource type="Script" path="res://Objects/DisplayText/DisplayText.gd" id="1_0rfq1"]
+[ext_resource type="Script" uid="uid://c4nweaxljc6gj" path="res://Objects/DisplayText/DisplayText.gd" id="1_0rfq1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qq3gu"]
 bg_color = Color(0, 0, 0, 1)
@@ -49,8 +49,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rlf2f"]
 _data = {
-"RESET": SubResource("Animation_5vk5j"),
-"Reveal": SubResource("Animation_pacw6")
+&"RESET": SubResource("Animation_5vk5j"),
+&"Reveal": SubResource("Animation_pacw6")
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]

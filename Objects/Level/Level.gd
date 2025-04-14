@@ -78,8 +78,7 @@ func _ready():
 	else: report_missing(MISSING_NODE, "Machine")
 	
 	if win_area:
-		win_area.win_timer.timeout.connect(has_player_won.bind(win_area.machine_in_area))
-		if hud: win_area.win_timer_started.connect(hud._on_win_timer_started)
+		win_area.machine_entered.connect(has_player_won.bind(win_area.machine_in_area))
 	else: report_missing(MISSING_NODE, "WinArea")
 
 func _process(delta):
@@ -96,12 +95,12 @@ func report_missing(type: int, missing_name: String):
 func out_of_joules():
 	pass
 
-func has_player_won(value: bool):
+func has_player_won(machine: Machine, has_won: bool):
 	var extra_time := level_timer.time_left
 	level_timer.stop()
 	
 	# The player won
-	if value:
+	if has_won:
 		# Calculates the score of the player
 		var leftover_joules = machine.get_property(machine.JOULES_STORED)
 		var leftover_time : float = time_spent + extra_time - avg_time
