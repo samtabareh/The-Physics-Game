@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MachinePartProperties" load_steps=2 format=3 uid="uid://dh6v17c0f6m3u"]
+
+[ext_resource type="Script" uid="uid://bnwnjb5mrfq6d" path="res://Resources/Parts Properties/MachinePartProperties.gd" id="1_l7y4h"]
+
+[resource]
+script = ExtResource("1_l7y4h")
+name = "MP_B_3"
+properties_values = [40, 0, 2000, 0]

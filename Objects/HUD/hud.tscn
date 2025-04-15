@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbtpb3qirf85r"]
+[gd_scene load_steps=9 format=3 uid="uid://bbtpb3qirf85r"]
 
 [ext_resource type="Script" uid="uid://din7oudqo0q6t" path="res://Objects/HUD/HUD.gd" id="1_3f1ed"]
 [ext_resource type="Theme" uid="uid://b87w0gxls3wqd" path="res://Resources/Themes/Button.tres" id="2_ldu36"]
-[ext_resource type="Texture2D" uid="uid://cifnwbhq6famy" path="res://Textures/UI/Left_Move_Btn.png" id="3_qtiyy"]
-[ext_resource type="Texture2D" uid="uid://choxxscig7n0h" path="res://Textures/UI/Right_Move_Btn.png" id="4_x8twb"]
+[ext_resource type="Texture2D" uid="uid://b3mrv4hprxaa4" path="res://Textures/UI/Left_Move_Button.png" id="3_txm0u"]
+[ext_resource type="Texture2D" uid="uid://b4yxs638ccx72" path="res://Textures/UI/Right_Move_Button.png" id="4_4p43v"]
+[ext_resource type="Texture2D" uid="uid://b6grv5uo25jba" path="res://Textures/UI/Empty_Stars.png" id="5_im2tr"]
+[ext_resource type="Texture2D" uid="uid://dvc25hc8s2wqb" path="res://Textures/UI/Filled_Stars.png" id="6_gcqre"]
 
 [sub_resource type="Theme" id="Theme_xbi6v"]
 Button/font_sizes/font_size = 32
@@ -129,37 +131,80 @@ theme = SubResource("Theme_xbi6v")
 text = "Start
 "
 
-[node name="Restart" type="Button" parent="Main" groups=["UI"]]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -48.5
-offset_top = -53.0
-offset_right = 48.5
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 0
-theme = SubResource("Theme_xbi6v")
-text = "Restart
-"
-
 [node name="Left" type="TouchScreenButton" parent="Main"]
 visible = false
 position = Vector2(40, 509)
-texture_normal = ExtResource("3_qtiyy")
+texture_normal = ExtResource("3_txm0u")
 shape = SubResource("RectangleShape2D_vucqy")
 
 [node name="Right" type="TouchScreenButton" parent="Main"]
 visible = false
 position = Vector2(1049, 509)
-texture_normal = ExtResource("4_x8twb")
+texture_normal = ExtResource("4_4p43v")
 shape = SubResource("RectangleShape2D_vucqy")
 
 [node name="Level End" type="CanvasLayer" parent="."]
 visible = false
+
+[node name="Background" type="ColorRect" parent="Level End"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18, 0.18, 0.18, 0.631373)
+
+[node name="PanelContainer" type="PanelContainer" parent="Level End"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -100.5
+offset_right = 102.0
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level End/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ScoreDisplay" type="TextureProgressBar" parent="Level End/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+max_value = 3.0
+step = 0.1
+value = 1.3
+texture_under = ExtResource("5_im2tr")
+texture_progress = ExtResource("6_gcqre")
+
+[node name="Next Level" type="Button" parent="Level End/PanelContainer/VBoxContainer" groups=["UI"]]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_xbi6v")
+text = "Next Level
+"
+
+[node name="Restart" type="Button" parent="Level End/PanelContainer/VBoxContainer" groups=["UI"]]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_xbi6v")
+text = "Restart
+"
+
+[node name="Main Menu" type="Button" parent="Level End/PanelContainer/VBoxContainer" groups=["UI"]]
+layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_xbi6v")
+text = "Menu
+"
 
 [connection signal="pressed" from="Menu/Game/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Menu/Game/Collection" to="." method="_on_collection_pressed"]
@@ -169,4 +214,6 @@ visible = false
 [connection signal="pressed" from="Menu/Language/English" to="." method="_on_english_pressed"]
 [connection signal="pressed" from="Menu/Language/Farsi" to="." method="_on_farsi_pressed"]
 [connection signal="pressed" from="Main/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Main/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Level End/PanelContainer/VBoxContainer/Next Level" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="Level End/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Level End/PanelContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

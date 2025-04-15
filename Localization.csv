@@ -9,13 +9,19 @@ Exit;Exit;خروج
 Menu;Menu;منو
 Main Menu;Main Menu;منو اصلی
 Levels;Levels;مرحله ها
+Next Level;Next Level;مرحله بعدی
 Save;Save;ذخیره
 Load;Load;بارگیری
 Parts;Parts;قطعات
 Skins;Skins;پوسته ها
 Collection;Collection;مجموعه
-MP_F_1;Small Motor;موتور کوچک
+MP_A_1;Small Balloon;بالون کوچک
+MP_F_1;Weak Motor;موتور ضغیف
+MP_F_2;Good Motor;موتور خوب
+MP_F_3;Strong Motor;موتور قوی
 MP_B_1;Small Fuel Tank;مخزن کوچک
+MP_B_2;Medium Fuel Tank;مخزن متوسط
+MP_B_3;Big Fuel Tank;مخزن بزرگ
 Part_Tooltip_Mass;Mass: {0}Kg;جرم: {0}Kg
 Part_Tooltip_Force;Force: {0}N;نیرو: {0}N
 Part_Tooltip_Joules_Stored;Joules Stored: {0}J;ژول های ذخیره شده: {0}J

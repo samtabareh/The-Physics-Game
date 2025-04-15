@@ -8,6 +8,7 @@ enum { MISSING_NODE, MISSING_EXPORT }
 @onready var win_area: WinArea
 @onready var camera: Camera2D
 
+## Used to time the amount of time the player takes for them to finish
 @onready var level_timer := Timer.new()
 #endregion
 
@@ -16,7 +17,7 @@ enum { MISSING_NODE, MISSING_EXPORT }
 
 ## Parts of the level (mainly used for referencing)
 var level_parts: Array[MachinePart] = []
-var time_spent := 0
+var time_spent := 0.0
 var score := 3.0
 
 func _ready():
@@ -26,9 +27,9 @@ func _ready():
 	for node in get_children():
 		if node is HUD: hud = node
 		elif node is Machine: machine = node
-		elif node is MachinePart: level_parts.append(node)
 		elif node is WinArea: win_area = node
 		elif node is Camera2D: camera = node
+		#elif node is MachinePart: level_parts.append(node)
 	
 	level_timer.wait_time = 1
 	level_timer.timeout.connect(func (): time_spent += 1)
@@ -45,8 +46,6 @@ func _ready():
 	else: report_missing(MISSING_NODE, "HUD")
 	
 	if machine:
-		machine.out_of_joules.connect(out_of_joules)
-		
 		machine.movement_start.connect(func ():
 			level_timer.start()
 			hud.machine_start_button.visible = false
@@ -69,16 +68,12 @@ func _ready():
 				hud.right_move.hide()
 		)
 		
-		# Connect the start button to the movement function
 		if hud:
 			hud.machine_start_button.button_down.connect(machine.start_movement)
-			machine.out_of_joules.connect(func ():
-				hud.restart_button.show()
-				)
+			if win_area: machine.movement_end.connect(has_player_won)
 	else: report_missing(MISSING_NODE, "Machine")
 	
-	if win_area:
-		win_area.machine_entered.connect(has_player_won.bind(win_area.machine_in_area))
+	if win_area: pass
 	else: report_missing(MISSING_NODE, "WinArea")
 
 func _process(delta):
@@ -92,11 +87,8 @@ func report_missing(type: int, missing_name: String):
 	if type == MISSING_EXPORT:
 		push_error("%s not set in level %s %s" % [missing_name, LevelHandler.current_level.Category, LevelHandler.current_level.Name])
 
-func out_of_joules():
-	pass
-
-func has_player_won(machine: Machine, has_won: bool):
-	var extra_time := level_timer.time_left
+func has_player_won(has_won: bool = win_area.machine_in_area):
+	var extra_time: float = abs(level_timer.time_left-1)
 	level_timer.stop()
 	
 	# The player won
@@ -112,6 +104,6 @@ func has_player_won(machine: Machine, has_won: bool):
 		# If the time is even higher, decrease the score even more
 		if leftover_time >= avg_time/2: score -= 0.75
 		
-		hud.show_end_level_menu(true, score)
+		if hud: hud.show_end_level_menu(true, score)
 	# The player didnt win
-	else: hud.show_end_level_menu(false)
+	else: if hud: hud.show_end_level_menu(false)

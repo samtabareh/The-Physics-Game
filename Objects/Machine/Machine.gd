@@ -4,11 +4,14 @@ enum { MASS, FORCE, JOULES_STORED, JOULES_USAGE }
 
 signal movement_start
 signal movement_end
-signal out_of_joules
 
+## Default order of properties
 const DEFAULT_PROPERTIES := [ MASS, FORCE, JOULES_STORED, JOULES_USAGE ]
+## Default values of properties
 const DEFAULT_VALUES := [ 10, 0, 0, 0 ]
+## Multiplier for movement
 const SPEED := 75
+## Colors shown on "Joules Display" sorted based on percentage left
 const JOULES_DISPLAY_COLORS := {
 	75: Color8(0, 185, 47),
 	50: Color8(208, 185, 47),
@@ -25,7 +28,7 @@ const JOULES_DISPLAY_COLORS := {
 #endregion
 
 @onready var joules_display: ProgressBar = $JoulesDisplay
-@onready var joules_text = $JoulesText
+@onready var joules_text = $JoulesDisplay/JoulesText
 
 var max_joules: float = 0
 var is_moving := false
@@ -41,7 +44,8 @@ func _ready():
 		child.connection_changed.connect(connector_connection_changed)
 	
 	var box := StyleBoxFlat.new()
-	box.bg_color = JOULES_DISPLAY_COLORS[75]
+	box.set_corner_radius_all(6)
+	box.bg_color = JOULES_DISPLAY_COLORS[0]
 	joules_display.theme.set_stylebox("fill", "ProgressBar", box)
 
 func _input(event):
@@ -52,7 +56,6 @@ func move(direction: float):
 	if !is_moving: return
 	# If it has no/not enough joules to use, trigger its signal and stop moving
 	if !can_move:
-		out_of_joules.emit()
 		end_movement()
 		return
 	
@@ -67,15 +70,14 @@ func move(direction: float):
 	joules_display.value = get_property(JOULES_STORED)
 	joules_text.text = str(get_property(JOULES_STORED))
 	
+	var box := StyleBoxFlat.new()
+	box.set_corner_radius_all(6)
 	for key in JOULES_DISPLAY_COLORS.keys():
 		var ratio = get_property(JOULES_STORED) / max_joules * 100
-		
 		if ratio >= key:
-			var box := StyleBoxFlat.new()
 			box.bg_color = JOULES_DISPLAY_COLORS[key]
-			
-			joules_display.theme.set_stylebox("fill", "ProgressBar", box)
 			break
+	joules_display.theme.set_stylebox("fill", "ProgressBar", box)
 
 func connector_connection_changed(changed_connector: Connector, old_connector: Connector):
 	if is_moving: return
@@ -90,13 +92,24 @@ func connector_connection_changed(changed_connector: Connector, old_connector: C
 	
 	set_properties(DEFAULT_PROPERTIES, props_values)
 	
+	var old_max_joules = max_joules
 	max_joules = get_property(JOULES_STORED)
 	
-	# Update the joules displays
-	joules_display.max_value = max_joules
-	joules_display.value = get_property(JOULES_STORED)
-	joules_text.text = str(get_property(JOULES_STORED))
-	joules_display.step = get_property(JOULES_USAGE)
+	if max_joules != old_max_joules:
+		# Update the joules displays
+		var box := StyleBoxFlat.new()
+		box.set_corner_radius_all(6)
+		# If no tank, make the box color red
+		if max_joules == 0: box.bg_color = JOULES_DISPLAY_COLORS[0]
+		else: box.bg_color = JOULES_DISPLAY_COLORS[75]
+		joules_display.theme.set_stylebox("fill", "ProgressBar", box)
+		
+		joules_display.max_value = max_joules
+		joules_display.value = get_property(JOULES_STORED)
+		joules_display.step = get_property(JOULES_USAGE)
+		
+		joules_text.text = str(get_property(JOULES_STORED))
+		
 
 #region Properties
 func set_properties(props: Array, values: Array, add: bool = false):
@@ -128,5 +141,5 @@ func start_movement():
 	is_moving = true
 
 func end_movement():
-	movement_end.emit()
 	is_moving = false
+	movement_end.emit()

@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_j4wd7")
 name = "MP_F_1"
-properties_values = [10, 10, 0, 15]
+properties_values = [10, 10, 0, 10]

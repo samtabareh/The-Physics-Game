@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2jlassiqeh0l"
-path="res://.godot/imported/Machine_wheel.png-28f684ca57f3350b3cae4250211b8902.ctex"
+uid="uid://b6grv5uo25jba"
+path="res://.godot/imported/Empty_Stars.png-11cd4bc4fc8480df6a0a163c7b664cce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Machine/Wheel/Machine_wheel.png"
-dest_files=["res://.godot/imported/Machine_wheel.png-28f684ca57f3350b3cae4250211b8902.ctex"]
+source_file="res://Textures/UI/Empty_Stars.png"
+dest_files=["res://.godot/imported/Empty_Stars.png-11cd4bc4fc8480df6a0a163c7b664cce.ctex"]
 
 [params]
 

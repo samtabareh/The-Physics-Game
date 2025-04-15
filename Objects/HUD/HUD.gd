@@ -1,13 +1,17 @@
 class_name HUD extends Node2D
 
 #region OnReady(s)
-@onready var options_layer = $Menu
-@onready var hud_layer = $Main
+@onready var options_layer: CanvasLayer = $Menu
+@onready var hud_layer: CanvasLayer = $Main
+@onready var level_end_layer: CanvasLayer = $"Level End"
 
 @onready var machine_start_button: Button = $Main/Start
 @onready var left_move: TouchScreenButton = $Main/Left
 @onready var right_move: TouchScreenButton = $Main/Right
-@onready var restart_button: Button = $Main/Restart
+
+@onready var score_display: TextureProgressBar = $"Level End/PanelContainer/VBoxContainer/ScoreDisplay"
+@onready var next_level: Button = $"Level End/PanelContainer/VBoxContainer/Next Level"
+@onready var restart: Button = $"Level End/PanelContainer/VBoxContainer/Restart"
 #endregion
 
 func _ready():
@@ -37,7 +41,13 @@ func _on_restart_pressed():
 	LevelHandler.change_level(LevelHandler.current_level)
 
 func show_end_level_menu(won: bool, score: float = 0):
-	pass
+	level_end_layer.show()
+	if won:
+		score_display.show()
+		score_display.value = score
+		next_level.show()
+	else:
+		restart.show()
 
 func _on_save_pressed():
 	SaveHandler.save_game()
@@ -61,3 +71,6 @@ func _on_collection_pressed():
 func show_part_collection(part: MachinePartProperties):
 	var c := Collection.create_new(self)
 	c.open_part(part)
+
+func _on_next_level_pressed():
+	LevelHandler.change_level(LevelHandler.next_level())
