@@ -14,7 +14,10 @@ func save_game():
 	}
 	
 	for leveldata in LevelHandler.UnlockedLevels:
-		save_dict["Unlocked_Levels"].append(leveldata.Path)
+		if leveldata is LevelData: save_dict["Unlocked_Levels"].append(leveldata.Path)
+		else:
+			push_error("Non-LevelData in unlocked levels list found.")
+			LevelHandler.UnlockedLevels.erase(leveldata)
 	
 	for part in MainHandler.unlocked_parts:
 		save_dict["Unlocked_Parts"].append(part.name)

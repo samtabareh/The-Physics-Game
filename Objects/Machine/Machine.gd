@@ -28,7 +28,9 @@ const JOULES_DISPLAY_COLORS := {
 #endregion
 
 @onready var joules_display: ProgressBar = $JoulesDisplay
-@onready var joules_text = $JoulesDisplay/JoulesText
+@onready var joules_text: Label = $JoulesDisplay/JoulesText
+@onready var joules_usage_text: Label = $TextureRect/JoulesUsageText
+@onready var force_text: Label = $TextureRect/ForceText
 
 var max_joules: float = 0
 var is_moving := false
@@ -82,6 +84,8 @@ func move(direction: float):
 func connector_connection_changed(changed_connector: Connector, old_connector: Connector):
 	if is_moving: return
 	
+	var old_pv = properties_values.duplicate()
+	
 	var props_values := DEFAULT_VALUES.duplicate()
 	for connector in connectors:
 		var part_props: MachinePartProperties = connector.get_connected_part_properties()
@@ -92,11 +96,12 @@ func connector_connection_changed(changed_connector: Connector, old_connector: C
 	
 	set_properties(DEFAULT_PROPERTIES, props_values)
 	
-	var old_max_joules = max_joules
 	max_joules = get_property(JOULES_STORED)
 	
-	if max_joules != old_max_joules:
+	if max_joules != old_pv[JOULES_STORED]:
 		# Update the joules displays
+		
+		# Update box theme
 		var box := StyleBoxFlat.new()
 		box.set_corner_radius_all(6)
 		# If no tank, make the box color red
@@ -104,12 +109,17 @@ func connector_connection_changed(changed_connector: Connector, old_connector: C
 		else: box.bg_color = JOULES_DISPLAY_COLORS[75]
 		joules_display.theme.set_stylebox("fill", "ProgressBar", box)
 		
+		# Update text
 		joules_display.max_value = max_joules
 		joules_display.value = get_property(JOULES_STORED)
 		joules_display.step = get_property(JOULES_USAGE)
 		
 		joules_text.text = str(get_property(JOULES_STORED))
-		
+	
+	if old_pv[JOULES_USAGE] != get_property(JOULES_USAGE):
+		joules_usage_text.text = str(get_property(JOULES_USAGE)) + "J/s"
+	if old_pv[FORCE] != get_property(FORCE):
+		force_text.text = str(get_property(FORCE)) + "N"
 
 #region Properties
 func set_properties(props: Array, values: Array, add: bool = false):

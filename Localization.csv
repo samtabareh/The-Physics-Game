@@ -28,13 +28,12 @@ Part_Tooltip_Joules_Stored;Joules Stored: {0}J;ژول های ذخیره شده: 
 Part_Tooltip_Joules_Usage;Joules Usage: {0}J/s;ژول مورد نیاز: {0}J/s
 Easy;Easy;آسان
 Easy 1;Easy 1;آسان 1
-Easy 2;Easy 2;آسان 2
-Easy 3;Easy 3;آسان 3
+Medium;Medium;متوسط
+Medium 1;Medium 1;متوسط 1
+Hard;Hard;سخت
+Hard 1;Hard 1;سخت 1
 Tutorial;Tutorial;آموزش
 Tutorial 1;Tutorial 1;آموزش 1
-Tutorial 2;Tutorial 2;آموزش 2
-Tutorial 3;Tutorial 3;آموزش 3
-Tutorial 4;Tutorial 4;آموزش 4
 Tutorial_1-1;Welcome to Machine Maker! Here, we make machines of different variety!;خوش آمدید به ماشین ساز! اینجا ما ماشین های متنوعی می سازیم!
 Tutorial_1-2;You have been employed to conduct testing of our new products!;شما استخدام شدید تا آزمایش محصولات جدید ما را انجام بدید!
 Tutorial_1-3;Let's start with explaining some things.;ییاید شروع کنیم با توضیح دادن چند مورد.

@@ -77,6 +77,8 @@ func get_level_from_path(path : String) -> LevelData:
 
 func change_level(level):
 	if level is String:
+		var temp = get_level_from_path(level)
+		if temp != null: unlock_level(temp)
 		get_tree().change_scene_to_file(level)
 	elif level is LevelData:
 		unlock_level(level)
