@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://chj7ancmvkg4h"]
+[gd_scene load_steps=4 format=3 uid="uid://chj7ancmvkg4h"]
 
 [ext_resource type="Script" uid="uid://eejc07o3f6ao" path="res://Objects/Win Area/WinArea.gd" id="1_lorcj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq6rd"]
+size = Vector2(256, 128)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oexuj"]
 size = Vector2(256, 128)
 
 [node name="WinArea" type="Area2D"]
@@ -16,6 +19,7 @@ shape = SubResource("RectangleShape2D_dq6rd")
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_oexuj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
