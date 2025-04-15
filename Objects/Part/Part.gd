@@ -7,15 +7,15 @@ signal show_info(part: MachinePartProperties)
 @onready var first_pos := position
 
 @onready var connector: Connector = %"Connector"
-@onready var texture: TextureRect = %"Texture"
+@onready var animated_sprite: AnimatedSprite2D = $"AnimatedSprite2D"
 
 var picked_up := false :
 	get:
 		return self == InputHandler.picked_up_part
 
 func _ready():
-	#texture.texture = properties.texture
-	texture.set_anchors_preset(Control.PRESET_CENTER)
+	animated_sprite.sprite_frames = properties.sprite_frames
+	animated_sprite.play("default")
 
 func drop():
 	if !picked_up: return
@@ -24,7 +24,7 @@ func drop():
 
 func _on_area_input(viewport, event, shape_idx):
 	# Info of part
-	if event is InputEventScreenTouch and event.double_tap:
+	if event is InputEventMouseButton and event.double_click:
 		show_info.emit(properties)
 	
 	# Grab part

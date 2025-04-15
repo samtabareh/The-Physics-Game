@@ -1,15 +1,14 @@
 class_name MachinePartProperties extends Resource
 
-## Name that will be translated (required)
-## example: "MP_B_1" short for MachinePart Battery 1 and will translate to Small Tank/مخزن کوچک
+## Name that will be translated
 @export var name := "MP_T_#"
+## Texture for the game to display
+@export var sprite_frames: SpriteFrames
 ## [0] = Mass* [br]
 ## [1] = Force [br]
 ## [2] = Joules stored [br]
 ## [3] = Used Joules per second [J/s]
 @export var properties_values: Array = [ 10, 0, 0, 0 ]
-## Texture for the game to display (required)
-@export var texture : Texture2D
 
 func get_property(prop: int):
 	return properties_values[prop]

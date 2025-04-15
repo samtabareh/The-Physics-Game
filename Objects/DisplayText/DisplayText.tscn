@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://c4nweaxljc6gj" path="res://Objects/DisplayText/DisplayText.gd" id="1_0rfq1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qq3gu"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.12549, 0.129412, 0.141176, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
+border_color = Color(0.176471, 0.196078, 0.207843, 1)
 
 [sub_resource type="Theme" id="Theme_knt8c"]
 Panel/styles/panel = SubResource("StyleBoxFlat_qq3gu")
@@ -58,15 +59,19 @@ layer = 0
 script = ExtResource("1_0rfq1")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 12
+custom_minimum_size = Vector2(1152, 257)
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -226.0
-offset_bottom = -1.0
+offset_left = -576.0
+offset_top = -257.0
+offset_right = 576.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 

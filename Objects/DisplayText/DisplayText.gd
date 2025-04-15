@@ -17,15 +17,16 @@ const DEFAULT_SIZE = Vector2(1152, 225)
 
 var is_up: bool = false :
 	set(v):
-		if v: margin_container.set_anchors_preset(Control.PRESET_CENTER_TOP) 
-		else: margin_container.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
-		margin_container.size = DEFAULT_SIZE
+		if v: margin_container.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP, Control.PRESET_MODE_KEEP_SIZE) 
+		else: margin_container.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM, Control.PRESET_MODE_KEEP_SIZE)
+		is_up = v
 
 func text(a : Array):
 	writing_started.emit(a)
 	for s in a:
 		if !s is String or s == "": continue
 		label.name = s
+		writing_changed.emit(s)
 		show()
 		player.play("RESET")
 		player.play("Reveal", 1, clamp(s.length()/5, .5, 1.5))

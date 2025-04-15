@@ -1,12 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://chj7ancmvkg4h"]
 
 [ext_resource type="Script" uid="uid://eejc07o3f6ao" path="res://Objects/Win Area/WinArea.gd" id="1_lorcj"]
+[ext_resource type="Texture2D" uid="uid://bewc7anqqqps" path="res://Textures/Objects/Win Area/Win Area.png" id="2_k4cqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq6rd"]
-size = Vector2(256, 128)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oexuj"]
-size = Vector2(256, 128)
+size = Vector2(96, 128)
 
 [node name="WinArea" type="Area2D"]
 monitorable = false
@@ -19,7 +17,8 @@ shape = SubResource("RectangleShape2D_dq6rd")
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_oexuj")
+position = Vector2(-68, 0)
+texture = ExtResource("2_k4cqk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

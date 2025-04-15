@@ -1,8 +1,137 @@
-[gd_resource type="Resource" script_class="MachinePartProperties" load_steps=2 format=3 uid="uid://dnx2q14fcao7k"]
+[gd_resource type="Resource" script_class="MachinePartProperties" load_steps=21 format=3 uid="uid://dnx2q14fcao7k"]
 
 [ext_resource type="Script" uid="uid://bnwnjb5mrfq6d" path="res://Resources/Parts Properties/MachinePartProperties.gd" id="1_ofer5"]
+[ext_resource type="Texture2D" uid="uid://ctr5spa1jrqul" path="res://Textures/Objects/Parts/F/Force.png" id="2_br521"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ourle"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fdax"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 33, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17cv8"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 66, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh660"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 99, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xendi"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 132, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fc14"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 165, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utugr"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 198, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6jva"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 231, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un4qa"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 264, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07s3d"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 297, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgscy"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 330, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smhh2"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 363, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gsa1"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 396, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhpnq"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 429, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fqox"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 462, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdbib"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 495, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwbf3"]
+atlas = ExtResource("2_br521")
+region = Rect2(0, 528, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br521"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ourle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fdax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17cv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh660")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xendi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fc14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utugr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6jva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un4qa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07s3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgscy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smhh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gsa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhpnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fqox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdbib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwbf3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 34.0
+}]
 
 [resource]
 script = ExtResource("1_ofer5")
 name = "MP_F_3"
-properties_values = [20, 20, 0, 20]
+sprite_frames = SubResource("SpriteFrames_br521")
+properties_values = [15, 20, 0, 20]

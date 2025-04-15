@@ -19,21 +19,35 @@ MP_A_1;Small Balloon;بالون کوچک
 MP_F_1;Weak Motor;موتور ضغیف
 MP_F_2;Good Motor;موتور خوب
 MP_F_3;Strong Motor;موتور قوی
-MP_B_1;Small Fuel Tank;مخزن کوچک
-MP_B_2;Medium Fuel Tank;مخزن متوسط
-MP_B_3;Big Fuel Tank;مخزن بزرگ
+MP_B_1;Small Tank;مخزن کوچک
+MP_B_2;Medium Tank;مخزن متوسط
+MP_B_3;Big Tank;مخزن بزرگ
 Part_Tooltip_Mass;Mass: {0}Kg;جرم: {0}Kg
 Part_Tooltip_Force;Force: {0}N;نیرو: {0}N
 Part_Tooltip_Joules_Stored;Joules Stored: {0}J;ژول های ذخیره شده: {0}J
 Part_Tooltip_Joules_Usage;Joules Usage: {0}J/s;ژول مورد نیاز: {0}J/s
-Beginner;Beginner;تازه کار
-Beginner 1;Beginner 1;تازه کار 1
-Beginner 2;Beginner 2;تازه کار 2
-Beginner 3;Beginner 3;تازه کار 3
+Easy;Easy;آسان
+Easy 1;Easy 1;آسان 1
+Easy 2;Easy 2;آسان 2
+Easy 3;Easy 3;آسان 3
 Tutorial;Tutorial;آموزش
 Tutorial 1;Tutorial 1;آموزش 1
 Tutorial 2;Tutorial 2;آموزش 2
 Tutorial 3;Tutorial 3;آموزش 3
 Tutorial 4;Tutorial 4;آموزش 4
+Tutorial_1-1;Welcome to Machine Maker! Here, we make machines of different variety!;خوش آمدید به ماشین ساز! اینجا ما ماشین های متنوعی می سازیم!
+Tutorial_1-2;You have been employed to conduct testing of our new products!;شما استخدام شدید تا آزمایش محصولات جدید ما را انجام بدید!
+Tutorial_1-3;Let's start with explaining some things.;ییاید شروع کنیم با توضیح دادن چند مورد.
+Tutorial_1-4;At the bottom left, there is a machine that is a base that different parts can connect to.;سمت چپ، آن پایین یک ماشین وجود دارد که یک پایه ای است که قطعه های مختلف می توانند به آن وصل بشوند
+Tutorial_1-5;At the top left, there are some machine parts that our machine can connect to!;آن بالا سمت چپ، چند قطعه وجود دارند که به ماشین ما می توانند وصل بشوند!
+Tutorial_1-6;One is a motor that allows our machine to move.;یکی از آنها یک موتور است که به ماشین ما قابلیت حرکت را می دهد.
+Tutorial_1-7;The other is a tank, that stores 500 joules.;دیگری یک مخزن است که 500 ژول را نگهداری می کند.
+Tutorial_1-8;Our machine can use them to power its parts.;ماشین ما می تواند از آنها استفاده کند تا قطعه هایش را به کار به اندازد.
+Tutorial_1-9;On both parts and the machine, you can see some connectors.;روی هردو قطعه ها و ماشین چند وصل کننده وجود دارد.
+Tutorial_1-10;When a parts connector touches a machines connector, the part connects to the machine.;زمانی که وصل کننده قطعه ای با وصل کننده ماشینی تماس برقرار می کند، آن قطعه به ماشین وصل می شود.
+Tutorial_1-11;Drag each parts connector onto a machines to try and connect them to the machine!;قطعه ها را بکشید تا وصل کننده هایشان به وصل کننده های ماشین وصل شوند!
+Tutorial_1-12;At the bottom left there is an area you have to get the machine to for you to succeed!;در پایین سمت راست منطقه ای وجود دارد که شما باید ماشین را به آن ببرید تا موفق شوید!
+Tutorial_1-13;But beware of your joules, if you run out and dont make it, you fail!;اما مواظب ژول های خود باشید، اگر آنها تمام شوند و شما به مقصد نرسید، شما شکست می خورید!
+Tutorial_1-14;Click the "Start" button to start the testing!;برروی دکمه "شروع" کلیک کنید تا آزمایش را شروع کنید!
 Coming soon...;Coming soon...;به زودی...
 Are you sure?;Are you?;Are?

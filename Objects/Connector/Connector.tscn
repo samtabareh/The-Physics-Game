@@ -1,11 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://lty4cna7bewi"]
 
 [ext_resource type="Script" uid="uid://bwpl637rn5rth" path="res://Objects/Connector/Connector.gd" id="1_la7li"]
+[ext_resource type="Texture2D" uid="uid://cpeyoqjixd5kb" path="res://Textures/Objects/Connector/Connector.png" id="2_g4sgt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktx86"]
-size = Vector2(48, 20)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wix1i"]
 size = Vector2(48, 20)
 
 [node name="Connector" type="Node2D"]
@@ -17,7 +15,9 @@ script = ExtResource("1_la7li")
 shape = SubResource("RectangleShape2D_ktx86")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_wix1i")
+unique_name_in_owner = true
+texture = ExtResource("2_g4sgt")
+hframes = 2
 
 [connection signal="area_entered" from="Area" to="." method="_on_area_entered"]
 [connection signal="area_exited" from="Area" to="." method="_on_area_exited"]

@@ -12,7 +12,13 @@ func _input(event):
 	# ----Dev----
 	if Input.is_action_just_released("dev"):
 		MainHandler.is_dev = !MainHandler.is_dev
-	if Input.is_action_just_released("dev-rst") && MainHandler.is_dev: SaveHandler.delete_save()
+	if MainHandler.is_dev:
+		if Input.is_action_just_released("dev-rst"): SaveHandler.delete_save()
+		if Input.is_action_just_pressed("dev-ual"):
+			for category in LevelHandler.Levels.keys():
+				for level_data in LevelHandler.Levels.get(category).values():
+					LevelHandler.unlock_level(level_data)
+		
 
 func pick_up_part(part: MachinePart):
 	drop_part()

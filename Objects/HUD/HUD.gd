@@ -10,9 +10,11 @@ class_name HUD extends Node2D
 @onready var right_move: TouchScreenButton = $Main/Right
 
 @onready var score_display: TextureProgressBar = $"Level End/PanelContainer/VBoxContainer/ScoreDisplay"
-@onready var next_level: Button = $"Level End/PanelContainer/VBoxContainer/Next Level"
-@onready var restart: Button = $"Level End/PanelContainer/VBoxContainer/Restart"
+@onready var next_level_button: Button = $"Level End/PanelContainer/VBoxContainer/Next Level"
+@onready var restart_button: Button = $"Level End/PanelContainer/VBoxContainer/Restart"
 #endregion
+
+var next_level: String
 
 func _ready():
 	machine_start_button.set_anchors_and_offsets_preset(
@@ -45,9 +47,7 @@ func show_end_level_menu(won: bool, score: float = 0):
 	if won:
 		score_display.show()
 		score_display.value = score
-		next_level.show()
-	else:
-		restart.show()
+		next_level_button.show()
 
 func _on_save_pressed():
 	SaveHandler.save_game()
@@ -73,4 +73,4 @@ func show_part_collection(part: MachinePartProperties):
 	c.open_part(part)
 
 func _on_next_level_pressed():
-	LevelHandler.change_level(LevelHandler.next_level())
+	LevelHandler.change_level(next_level)

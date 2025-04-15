@@ -6,8 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnsmk"]
 size = Vector2(64, 32)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eoigp"]
-size = Vector2(64, 32)
+[sub_resource type="SpriteFrames" id="SpriteFrames_37ojo"]
 
 [node name="Part" type="Node2D"]
 script = ExtResource("1_jlex4")
@@ -19,19 +18,8 @@ monitorable = false
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_jnsmk")
 
-[node name="Texture" type="TextureRect" parent="."]
-unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = SubResource("PlaceholderTexture2D_eoigp")
-stretch_mode = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_37ojo")
 
 [node name="Connector" parent="." instance=ExtResource("2_i01qb")]
 unique_name_in_owner = true

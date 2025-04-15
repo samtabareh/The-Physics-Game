@@ -12,15 +12,22 @@ enum { MISSING_NODE, MISSING_EXPORT }
 @onready var level_timer := Timer.new()
 #endregion
 
+@export var next_scene: PackedScene
 ## Average time to beat level
 @export var avg_time: float
 
+
+var next_level: String
 ## Parts of the level (mainly used for referencing)
 var level_parts: Array[MachinePart] = []
 var time_spent := 0.0
 var score := 3.0
 
 func _ready():
+	if !next_scene:
+		if LevelHandler.next_level(): next_level = LevelHandler.next_level().Path
+		else: next_level = "res://Scenes/Main Menu/Main.tscn"
+	else: next_level = next_scene.resource_path
 	if !avg_time: report_missing(MISSING_EXPORT, "Avg Time")
 	
 	# Find the machine and hud and set their references
@@ -29,7 +36,7 @@ func _ready():
 		elif node is Machine: machine = node
 		elif node is WinArea: win_area = node
 		elif node is Camera2D: camera = node
-		#elif node is MachinePart: level_parts.append(node)
+		elif node is MachinePart: level_parts.append(node)
 	
 	level_timer.wait_time = 1
 	level_timer.timeout.connect(func (): time_spent += 1)
@@ -39,6 +46,7 @@ func _ready():
 	else: report_missing(MISSING_NODE, "Camera2D")
 	
 	if hud:
+		hud.next_level = next_level
 		# Setting up part info connection
 		for part in level_parts:
 			part.show_info.connect(hud.show_part_collection)

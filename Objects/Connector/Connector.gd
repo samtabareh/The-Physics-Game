@@ -2,6 +2,7 @@ class_name Connector extends Node2D
 
 signal connection_changed(connector, old_connector)
 
+@onready var sprite: Sprite2D = %Sprite2D
 @onready var parent :
 	get:
 		return get_parent()
@@ -21,6 +22,10 @@ var picked_up: bool :
 	get:
 		return parent.picked_up if !is_machine else false
 
+func _ready():
+	# To make the parts connector match correctly with the machines connector
+	sprite.flip_v = !is_machine
+
 func _process(delta):
 	if !is_machine:
 		if !queued_connections.is_empty() and (!picked_up or queued_connections[-1] == null):
@@ -39,6 +44,8 @@ func _process(delta):
 		elif !is_connected_to_connector and picked_up: parent.rotation = 0
 	else:
 		if !queued_connections.is_empty() and queued_connections[-1] == null: set_connection(null)
+	
+	sprite.frame = 1 if is_connected_to_connector else 0
 
 ## Sets the connector's connection (returns true if successful)
 func set_connection(connector: Connector) -> bool:

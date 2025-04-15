@@ -10,7 +10,7 @@ func _ready():
 func save_game():
 	var save_dict: Dictionary = {
 		"Unlocked_Levels": [],
-		"Unlocked_Parts": ["MP_B_1", "MP_F_1"]
+		"Unlocked_Parts": []
 	}
 	
 	for leveldata in LevelHandler.UnlockedLevels:
