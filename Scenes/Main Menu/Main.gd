@@ -1,5 +1,10 @@
 extends Node2D
 
+@onready var mm_coin_text: Label = %MMCoinText
+
+func _ready():
+	mm_coin_text.text = str(MainHandler.mm_coins)
+
 func _on_exit_pressed():
 	MainHandler.exit()
 

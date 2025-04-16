@@ -10,17 +10,38 @@ func _ready():
 func save_game():
 	var save_dict: Dictionary = {
 		"Unlocked_Levels": [],
-		"Unlocked_Parts": []
+		"Beaten_Levels": {},
+		"Unlocked_Parts": [],
+		"Unlocked_Skins": [],
+		"MM_Coins": 0,
+		"Machine_Scraps": 0
 	}
 	
-	for leveldata in LevelHandler.UnlockedLevels:
-		if leveldata is LevelData: save_dict["Unlocked_Levels"].append(leveldata.Path)
-		else:
+	save_dict["MM_Coins"] = MainHandler.mm_coins
+	save_dict["Machine_Scraps"] = MainHandler.machine_scraps
+	
+	for levelData in LevelHandler.UnlockedLevels:
+		if !levelData is LevelData:
 			push_error("Non-LevelData in unlocked levels list found.")
-			LevelHandler.UnlockedLevels.erase(leveldata)
+			LevelHandler.UnlockedLevels.erase(levelData)
+			continue
+		
+		save_dict["Unlocked_Levels"].append(levelData.Path)
+	
+	for levelData in LevelHandler.BeatenLevels.keys():
+		if !levelData is LevelData:
+			push_error("Non-LevelData in beaten levels list found.")
+			LevelHandler.BeatenLevels.erase(levelData)
+			continue
+		
+		var score: float = LevelHandler.BeatenLevels[levelData]
+		save_dict["Beaten_Levels"][levelData.Path] = score
 	
 	for part in MainHandler.unlocked_parts:
 		save_dict["Unlocked_Parts"].append(part.name)
+	
+	#for skin in MainHandler.unlocked_skins:
+		#save_dict["Unlocked_Skins"].append(skin.id)
 	
 	var save = FileAccess.open(save_path, FileAccess.WRITE)
 	var json_string = JSON.stringify(save_dict)
@@ -49,10 +70,25 @@ func load_game():
 		var data = json.get_data()
 		
 		for i in data.keys(): 
-			# If the string is for Unlocked Levels
-			if i == "Unlocked_Levels": for path in data[i]:
-				var leveldata: LevelData = LevelHandler.get_level_from_path(path)
-				LevelHandler.unlock_level(leveldata)
+			if i == "MM_Coins": MainHandler.mm_coins = data[i]
+			elif i == "Machine_Scraps": MainHandler.machine_scraps = data[i]
+			
+			elif i == "Unlocked_Levels": for path in data[i]:
+				if LevelHandler.get_level_from_path(path) != null:
+					var leveldata: LevelData = LevelHandler.get_level_from_path(path)
+					LevelHandler.unlock_level(leveldata)
+				else:
+					print_as("Missing level found in save file.")
+					push_error("Missing level found in save file.")
+					print_as(i+": "+data[i])
+			elif i == "Beaten_Levels": for path in data[i].keys():
+				if LevelHandler.get_level_from_path(path) != null:
+					var leveldata: LevelData = LevelHandler.get_level_from_path(path)
+					LevelHandler.beat_level(leveldata, data[i][path])
+				else:
+					print_as("Missing level found in save file.")
+					push_error("Missing level found in save file.")
+					print_as(i+": "+data[i])
 			
 			elif i == "Unlocked_Parts": for key in data[i]:
 				var part: MachinePartProperties = MainHandler.get_part_prop_from_name(key)
@@ -63,4 +99,8 @@ func load_game():
 func delete_save():
 	DirAccess.remove_absolute(save_path)
 	LevelHandler.UnlockedLevels = []
+	LevelHandler.BeatenLevels = {}
+	MainHandler.unlocked_parts = []
+	MainHandler.unlocked_skins = []
+	MainHandler.mm_coins = 0
 	print_as("Reset save")

@@ -1,17 +1,28 @@
 class_name HUD extends Node2D
 
-#region OnReady(s)
+
+#region Menu
 @onready var options_layer: CanvasLayer = $Menu
+#endregion
+
+#region Main
 @onready var hud_layer: CanvasLayer = $Main
-@onready var level_end_layer: CanvasLayer = $"Level End"
 
 @onready var machine_start_button: Button = $Main/Start
 @onready var left_move: TouchScreenButton = $Main/Left
 @onready var right_move: TouchScreenButton = $Main/Right
+#endregion
 
-@onready var score_display: TextureProgressBar = $"Level End/PanelContainer/VBoxContainer/ScoreDisplay"
-@onready var next_level_button: Button = $"Level End/PanelContainer/VBoxContainer/Next Level"
-@onready var restart_button: Button = $"Level End/PanelContainer/VBoxContainer/Restart"
+#region Level End
+@onready var level_end_layer: CanvasLayer = $"Level End"
+
+@onready var end_background: ColorRect = %Background
+@onready var end_display: PanelContainer = %EndDisplay
+@onready var mm_coin: HBoxContainer = %MMCoin
+@onready var mm_coin_text: Label = %MMCoinText
+@onready var score_display: TextureProgressBar = %ScoreDisplay
+@onready var score_text: Label = %ScoreText
+@onready var next_level_button: Button = %"Next Level"
 #endregion
 
 var next_level: String
@@ -42,12 +53,21 @@ func _on_menu_pressed():
 func _on_restart_pressed():
 	LevelHandler.change_level(LevelHandler.current_level)
 
-func show_end_level_menu(won: bool, score: float = 0):
-	level_end_layer.show()
+func show_end_level_menu(won: bool, score: float = 0, mm_coins: int = 0):
 	if won:
-		score_display.show()
 		score_display.value = score
+		score_text.text = "%s  /  3" % score
+		
+		mm_coin.show()
+		mm_coin_text.text = str(mm_coins)
+		
 		next_level_button.show()
+	
+	level_end_layer.show()
+	
+	var t = create_tween().set_parallel()
+	t.tween_property(end_background, "modulate", Color(1, 1, 1 ,1), 0.5)
+	t.tween_property(end_display, "modulate", Color(1, 1, 1 ,1), 0.5)
 
 func _on_save_pressed():
 	SaveHandler.save_game()

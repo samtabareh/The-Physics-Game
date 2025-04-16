@@ -6,18 +6,28 @@ const PART_NAME_MAP := {
 	"F": "Force"
 }
 
+var mm_coins: int = 0
+var machine_scraps: int = 0
+
 var is_dev := false :
 	set(value):
 		is_dev = value
 		print_as("is_dev: %s" % is_dev)
-
 var is_android: bool :
 	get:
 		return OS.get_name() == "Android"
-
 var unlocked_parts: Array[MachinePartProperties] = []
+var unlocked_skins: Array = []
 
 @onready var open_collection: Collection
+
+func give_mm_coins(amount: int):
+	mm_coins += amount
+	print_as("Gave %s Machine Maker coins to player" % amount)
+	SaveHandler.save_game()
+
+func unlock_skin(skin):
+	if !unlocked_skins.has(skin): unlocked_skins.append(skin)
 
 func unlock_part(part: MachinePartProperties):
 	if !unlocked_parts.has(part): unlocked_parts.append(part)

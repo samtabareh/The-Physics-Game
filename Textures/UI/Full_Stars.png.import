@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cifnwbhq6famy"
-path="res://.godot/imported/Left_Move_Btn.png-ebaaa934a7144e158c830081e76fed21.ctex"
+uid="uid://dvc25hc8s2wqb"
+path="res://.godot/imported/Full_Stars.png-dd8fcaaf946a4bcb31c7b038d6d01361.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/UI/Left_Move_Btn.png"
-dest_files=["res://.godot/imported/Left_Move_Btn.png-ebaaa934a7144e158c830081e76fed21.ctex"]
+source_file="res://Textures/UI/Full_Stars.png"
+dest_files=["res://.godot/imported/Full_Stars.png-dd8fcaaf946a4bcb31c7b038d6d01361.ctex"]
 
 [params]
 

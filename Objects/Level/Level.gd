@@ -2,23 +2,28 @@ class_name Level extends Node
 
 enum { MISSING_NODE, MISSING_EXPORT }
 
-#region On-Readies
+#region On-Ready(s)
 @onready var hud: HUD
 @onready var machine: Machine
 @onready var win_area: WinArea
 @onready var camera: Camera2D
 
+@onready var level_data: LevelData = LevelHandler.current_level
+
 ## Used to time the amount of time the player takes for them to finish
 @onready var level_timer := Timer.new()
 #endregion
 
+## Next level to go to. Automatically set as
+## the next level in the category if not set.
+## And if that doesn't exist then it's set to the main menu.  
 @export var next_scene: PackedScene
 ## Average time to beat level
 @export var avg_time: float
 
-
+## Path of the next level
 var next_level: String
-## Parts of the level (mainly used for referencing)
+## Machine parts in the level
 var level_parts: Array[MachinePart] = []
 var time_spent := 0.0
 var score := 3.0
@@ -91,9 +96,9 @@ func _process(delta):
 
 func report_missing(type: int, missing_name: String):
 	if type == MISSING_NODE:
-		push_error("%s not found in level %s %s" % [missing_name, LevelHandler.current_level.Category, LevelHandler.current_level.Name])
+		push_error("%s not found in level %s %s" % [missing_name, level_data.Category, level_data.Name])
 	if type == MISSING_EXPORT:
-		push_error("%s not set in level %s %s" % [missing_name, LevelHandler.current_level.Category, LevelHandler.current_level.Name])
+		push_error("%s not set in level %s %s" % [missing_name, level_data.Category, level_data.Name])
 
 func has_player_won(has_won: bool = win_area.machine_in_area):
 	var extra_time: float = abs(level_timer.time_left-1)
@@ -112,6 +117,19 @@ func has_player_won(has_won: bool = win_area.machine_in_area):
 		# If the time is even higher, decrease the score even more
 		if leftover_time >= avg_time/2: score -= 0.75
 		
-		if hud: hud.show_end_level_menu(true, score)
+		var mm_coins := 0
+		
+		if !LevelHandler.is_level_beaten(level_data):
+			mm_coins =  round(score * 10)
+			MainHandler.give_mm_coins(mm_coins)
+		elif LevelHandler.is_better_level_score(level_data, score):
+			mm_coins =  round((score - LevelHandler.BeatenLevels[level_data]) * 10)
+			MainHandler.give_mm_coins(mm_coins)
+		
+		# Register beaten level
+		LevelHandler.beat_level(level_data, score)
+		
+		if hud: hud.show_end_level_menu(true, score, mm_coins)
+	
 	# The player didnt win
 	else: if hud: hud.show_end_level_menu(false)

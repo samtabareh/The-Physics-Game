@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvc25hc8s2wqb"
-path="res://.godot/imported/Filled_Stars.png-71a1d919c694f0dea5e65f6ea992c80f.ctex"
+uid="uid://x0xbxpavl2e0"
+path="res://.godot/imported/Balloon3.png-0f791200480b2b61fdbf4751f8d1e547.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/UI/Filled_Stars.png"
-dest_files=["res://.godot/imported/Filled_Stars.png-71a1d919c694f0dea5e65f6ea992c80f.ctex"]
+source_file="res://Textures/Objects/Parts/A/Balloon3.png"
+dest_files=["res://.godot/imported/Balloon3.png-0f791200480b2b61fdbf4751f8d1e547.ctex"]
 
 [params]
 

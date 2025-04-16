@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce2b3dmdljh47"]
+[gd_scene load_steps=5 format=3 uid="uid://ce2b3dmdljh47"]
 
 [ext_resource type="Script" uid="uid://dlqqij6y8ma3l" path="res://Objects/Collection/Collection.gd" id="1_gwthn"]
+[ext_resource type="Texture2D" uid="uid://ks3j4ixn84wc" path="res://Textures/UI/MM_Coin_25x40.png" id="2_3dg5t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gehqo"]
 font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_age8r"]
+font_size = 32
 
 [node name="Collection" type="CanvasLayer"]
 script = ExtResource("1_gwthn")
@@ -14,10 +18,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -198.0
-offset_top = -198.0
-offset_right = 198.0
-offset_bottom = 198.0
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
@@ -38,6 +42,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[url=\"INVALID\"]- INVALID[/url]"
 fit_content = true
@@ -58,6 +63,7 @@ offset_right = 583.0
 offset_bottom = 310.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Base"
 fit_content = true
@@ -80,6 +86,43 @@ text = "Coming soon..."
 label_settings = SubResource("LabelSettings_gehqo")
 metadata/_tab_index = 1
 
+[node name="MMCoin" type="HBoxContainer" parent="TabContainer/Skins"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -67.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 65.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MMCoinDisplay" type="TextureRect" parent="TabContainer/Skins/MMCoin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_3dg5t")
+
+[node name="MMCoinText" type="Label" parent="TabContainer/Skins/MMCoin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+label_settings = SubResource("LabelSettings_age8r")
+
+[node name="Back" type="Button" parent="TabContainer/Skins"]
+layout_mode = 2
+offset_left = 15.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 19
+text = "<"
+
 [connection signal="meta_clicked" from="TabContainer/Parts/Selectors/Base" to="." method="_on_part_meta_clicked"]
 [connection signal="meta_clicked" from="TabContainer/Parts/Descriptions/Base" to="." method="_on_part_meta_clicked"]
 [connection signal="pressed" from="TabContainer/Parts/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Skins/Back" to="." method="_on_back_pressed"]

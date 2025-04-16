@@ -4,13 +4,18 @@ class_name Collection extends CanvasLayer
 @onready var selectors = $TabContainer/Parts/Selectors
 @onready var descriptions = $TabContainer/Parts/Descriptions
 @onready var tab_container = $TabContainer
+@onready var mm_coin_text = %MMCoinText
 
 func _ready():
 	TranslationHandler.updated_lang.connect(update_translation)
 	
+	# Set translated names for the tabs
 	tab_container.set_tab_title(0, tr("Parts"))
 	tab_container.set_tab_title(1, tr("Skins"))
 	
+	# -- Parts --
+	
+	# Check for part properties
 	if TypesLoader.part_properties.is_empty(): push_error("No Part Properties loaded for Collection!")
 	
 	for key in TypesLoader.part_properties.keys():
@@ -38,6 +43,9 @@ func _ready():
 		description.text = desc_text
 		
 		descriptions.add_child(description)
+	
+	# -- Skins --
+	mm_coin_text.text = str(MainHandler.mm_coins)
 
 func _exit_tree():
 	MainHandler.open_collection = null

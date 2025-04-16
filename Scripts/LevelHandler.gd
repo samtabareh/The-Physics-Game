@@ -2,8 +2,10 @@ extends BaseHandler
 
 ## { "Category": { 1: LevelData, 2: LevelData2 }, "Category2": { 1: LevelData } }
 var Levels := {}
-## Contains the path for levels not the levels
-var UnlockedLevels : Array[LevelData] = []
+## Contains the levelData for levels that have been reached
+var UnlockedLevels: Array[LevelData] = []
+## Contains the levelData for levels that have been beaten, along with the score
+var BeatenLevels: Dictionary[LevelData, float] = {}
 
 const path = "res://Scenes/Levels/"
 
@@ -85,8 +87,19 @@ func change_level(level):
 		get_tree().change_scene_to_file(level.Path)
 	else: push_error("Invalid level given, expected a LevelData res or path String.")
 
-func is_level_unlocked(level: LevelData) -> bool:
-	return UnlockedLevels.has(level)
+func is_level_unlocked(levelData: LevelData) -> bool:
+	return UnlockedLevels.has(levelData)
 
-func unlock_level(level: LevelData):
-	if !is_level_unlocked(level): UnlockedLevels.append(level)
+func is_level_beaten(levelData: LevelData) -> bool:
+	return BeatenLevels.keys().has(levelData)
+
+func is_better_level_score(levelData: LevelData, score: float) -> bool:
+	if !is_level_beaten(levelData): return true
+	return BeatenLevels[levelData] < score
+
+func unlock_level(levelData: LevelData):
+	if !is_level_unlocked(levelData): UnlockedLevels.append(levelData)
+
+func beat_level(levelData: LevelData, score: float):
+	if !is_level_unlocked(levelData): unlock_level(levelData)
+	if is_better_level_score(levelData, score): BeatenLevels[levelData] = score

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://choxxscig7n0h"
-path="res://.godot/imported/Right_Move_Btn.png-b16b7767d2a984090e191dc3222207cb.ctex"
+uid="uid://b7t2y1jm7nap"
+path="res://.godot/imported/Balloon2.png-10a4d858e3a0fde964cc2536685364b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/UI/Right_Move_Btn.png"
-dest_files=["res://.godot/imported/Right_Move_Btn.png-b16b7767d2a984090e191dc3222207cb.ctex"]
+source_file="res://Textures/Objects/Parts/A/Balloon2.png"
+dest_files=["res://.godot/imported/Balloon2.png-10a4d858e3a0fde964cc2536685364b3.ctex"]
 
 [params]
 

@@ -87,6 +87,7 @@ func connector_connection_changed(changed_connector: Connector, old_connector: C
 	var old_pv = properties_values.duplicate()
 	
 	var props_values := DEFAULT_VALUES.duplicate()
+	props_values[MASS] = base_mass
 	for connector in connectors:
 		var part_props: MachinePartProperties = connector.get_connected_part_properties()
 		

@@ -1,17 +1,36 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbtpb3qirf85r"]
+[gd_scene load_steps=13 format=3 uid="uid://bbtpb3qirf85r"]
 
 [ext_resource type="Script" uid="uid://din7oudqo0q6t" path="res://Objects/HUD/HUD.gd" id="1_3f1ed"]
 [ext_resource type="Theme" uid="uid://b87w0gxls3wqd" path="res://Resources/Themes/Button.tres" id="2_ldu36"]
 [ext_resource type="Texture2D" uid="uid://b3mrv4hprxaa4" path="res://Textures/UI/Left_Move_Button.png" id="3_txm0u"]
 [ext_resource type="Texture2D" uid="uid://b4yxs638ccx72" path="res://Textures/UI/Right_Move_Button.png" id="4_4p43v"]
+[ext_resource type="Texture2D" uid="uid://ks3j4ixn84wc" path="res://Textures/UI/MM_Coin_25x40.png" id="5_gcqre"]
 [ext_resource type="Texture2D" uid="uid://b6grv5uo25jba" path="res://Textures/UI/Empty_Stars.png" id="5_im2tr"]
-[ext_resource type="Texture2D" uid="uid://dvc25hc8s2wqb" path="res://Textures/UI/Filled_Stars.png" id="6_gcqre"]
+[ext_resource type="Texture2D" uid="uid://dvc25hc8s2wqb" path="res://Textures/UI/Full_Stars.png" id="6_gcqre"]
 
 [sub_resource type="Theme" id="Theme_xbi6v"]
-Button/font_sizes/font_size = 32
+Button/font_sizes/font_size = 42
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vucqy"]
 size = Vector2(70, 70)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iof4c"]
+bg_color = Color(0.69228, 0.72, 0.6408, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.201527, 0.201527, 0.201526, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_eu2cs"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_gcqre"]
+font_size = 32
 
 [node name="Hud" type="Node2D"]
 process_mode = 3
@@ -147,59 +166,103 @@ shape = SubResource("RectangleShape2D_vucqy")
 visible = false
 
 [node name="Background" type="ColorRect" parent="Level End"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.18, 0.18, 0.18, 0.631373)
+color = Color(0.28485, 0.28485, 0.28485, 0.631373)
 
-[node name="PanelContainer" type="PanelContainer" parent="Level End"]
+[node name="EndDisplay" type="PanelContainer" parent="Level End"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -114.75
-offset_top = -113.063
-offset_right = 114.75
-offset_bottom = 113.063
+offset_left = -133.0
+offset_top = -204.0
+offset_right = 133.0
+offset_bottom = 204.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iof4c")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Level End/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Level End/EndDisplay"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="ScoreDisplay" type="TextureProgressBar" parent="Level End/PanelContainer/VBoxContainer"]
+[node name="MMCoin" type="HBoxContainer" parent="Level End/EndDisplay/VBoxContainer"]
+unique_name_in_owner = true
 visible = false
+layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 4
+
+[node name="MMCoinDisplay" type="TextureRect" parent="Level End/EndDisplay/VBoxContainer/MMCoin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_gcqre")
+
+[node name="MMCoinText" type="Label" parent="Level End/EndDisplay/VBoxContainer/MMCoin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+label_settings = SubResource("LabelSettings_eu2cs")
+text_direction = 1
+
+[node name="ScoreDisplay" type="TextureProgressBar" parent="Level End/EndDisplay/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 max_value = 3.0
 step = 0.01
 texture_under = ExtResource("5_im2tr")
 texture_progress = ExtResource("6_gcqre")
 
-[node name="Next Level" type="Button" parent="Level End/PanelContainer/VBoxContainer" groups=["UI"]]
+[node name="ScoreText" type="Label" parent="Level End/EndDisplay/VBoxContainer"]
+unique_name_in_owner = true
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0  /  3"
+label_settings = SubResource("LabelSettings_gcqre")
+text_direction = 1
+
+[node name="HSeparator" type="HSeparator" parent="Level End/EndDisplay/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Next Level" type="Button" parent="Level End/EndDisplay/VBoxContainer" groups=["UI"]]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(192, 64)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_xbi6v")
 text = "Next Level
 "
 
-[node name="Restart" type="Button" parent="Level End/PanelContainer/VBoxContainer" groups=["UI"]]
+[node name="Restart" type="Button" parent="Level End/EndDisplay/VBoxContainer" groups=["UI"]]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_xbi6v")
 text = "Restart
 "
 
-[node name="Main Menu" type="Button" parent="Level End/PanelContainer/VBoxContainer" groups=["UI"]]
+[node name="Main Menu" type="Button" parent="Level End/EndDisplay/VBoxContainer" groups=["UI"]]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_xbi6v")
 text = "Menu
@@ -213,6 +276,6 @@ text = "Menu
 [connection signal="pressed" from="Menu/Language/English" to="." method="_on_english_pressed"]
 [connection signal="pressed" from="Menu/Language/Farsi" to="." method="_on_farsi_pressed"]
 [connection signal="pressed" from="Main/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Level End/PanelContainer/VBoxContainer/Next Level" to="." method="_on_next_level_pressed"]
-[connection signal="pressed" from="Level End/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="Level End/PanelContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Level End/EndDisplay/VBoxContainer/Next Level" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="Level End/EndDisplay/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Level End/EndDisplay/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

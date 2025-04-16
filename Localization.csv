@@ -28,10 +28,16 @@ Part_Tooltip_Joules_Stored;Joules Stored: {0}J;ژول های ذخیره شده: 
 Part_Tooltip_Joules_Usage;Joules Usage: {0}J/s;ژول مورد نیاز: {0}J/s
 Easy;Easy;آسان
 Easy 1;Easy 1;آسان 1
+Easy 2;Easy 2;آسان 2
+Easy 3;Easy 3;آسان 3
 Medium;Medium;متوسط
 Medium 1;Medium 1;متوسط 1
+Medium 2;Medium 2;متوسط 2
+Medium 3;Medium 3;متوسط 3
 Hard;Hard;سخت
 Hard 1;Hard 1;سخت 1
+Hard 2;Hard 2;سخت 2
+Hard 3;Hard 3;سخت 3
 Tutorial;Tutorial;آموزش
 Tutorial 1;Tutorial 1;آموزش 1
 Tutorial_1-1;Welcome to Machine Maker! Here, we make machines of different variety!;خوش آمدید به ماشین ساز! اینجا ما ماشین های متنوعی می سازیم!
@@ -48,5 +54,6 @@ Tutorial_1-11;Drag each parts connector onto a machines to try and connect them 
 Tutorial_1-12;At the bottom left there is an area you have to get the machine to for you to succeed!;در پایین سمت راست منطقه ای وجود دارد که شما باید ماشین را به آن ببرید تا موفق شوید!
 Tutorial_1-13;But beware of your joules, if you run out and dont make it, you fail!;اما مواظب ژول های خود باشید، اگر آنها تمام شوند و شما به مقصد نرسید، شما شکست می خورید!
 Tutorial_1-14;Click the "Start" button to start the testing!;برروی دکمه "شروع" کلیک کنید تا آزمایش را شروع کنید!
+Tutorial 2;Tutorial 2;آموزش 2
 Coming soon...;Coming soon...;به زودی...
-Are you sure?;Are you?;Are?
+Are you sure?;i Are you sure are you sure pretty are you sure interesting are you sure are you sure guess are you sure are you sure finally are you sure are you sure are you sure powers are you sure are you sure are you sure sure are you sure are you sure are you sure are you sure are you sure are you sure are you sure are you sure work oh are you sure that are you sure great are you sure son are you sure are you sure great are you sure are you sure are you sure are you sure are you sure are you sure are you sure are you sure are you sure tomorrow are you sure are you sure training are you sure are you sure are you sure exciting are you sure right are you sure are you sure are you sure tomorrow are you sure are you sure are you sure are you sure are you sure are you sure are you sure good are you sure are you sure sleep are you sure are you sure are you sure sure are you sure;[TITLE CARD]
