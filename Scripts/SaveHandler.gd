@@ -88,7 +88,7 @@ func load_game():
 				else:
 					print_as("Missing level found in save file.")
 					push_error("Missing level found in save file.")
-					print_as(i+": "+data[i])
+					print_as(i+": "+str(data[i]))
 			
 			elif i == "Unlocked_Parts": for key in data[i]:
 				var part: MachinePartProperties = MainHandler.get_part_prop_from_name(key)

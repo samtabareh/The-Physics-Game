@@ -134,4 +134,11 @@ animations = [{
 script = ExtResource("1_j4wd7")
 name = "MP_F_1"
 sprite_frames = SubResource("SpriteFrames_f1dno")
-properties_values = [5, 20, 0, 15]
+properties = {
+0: 10,
+1: 0,
+2: 15,
+3: 15,
+4: 0,
+5: 0
+}

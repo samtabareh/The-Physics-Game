@@ -18,6 +18,7 @@ func _ready():
 	# Check for part properties
 	if TypesLoader.part_properties.is_empty(): push_error("No Part Properties loaded for Collection!")
 	
+	# Initializing and setting up part selectors and descriptions
 	for key in TypesLoader.part_properties.keys():
 		var part_prop: MachinePartProperties = TypesLoader.part_properties[key]
 		
@@ -33,13 +34,12 @@ func _ready():
 		description.name = key
 		
 		# Setting up desc
-		var i = 0
 		var desc_text := tr(part_prop.name) + "\n"
-		for prop in part_prop.properties_values:
-			if prop != 0:
-				var text = "Part_Tooltip_"+MachinePartProperties.get_property_name(i, 0, true)
-				desc_text += TranslationHandler.translate_string(text, [prop]) + "\n"
-			i += 1
+		for prop in part_prop.properties.keys():
+			var val = part_prop.properties[prop]
+			if val != 0:
+				var text = "Part_Tooltip_"+MachineProperties.get_property_name(prop)
+				desc_text += TranslationHandler.translate_string(text, [val]) + "\n"
 		description.text = desc_text
 		
 		descriptions.add_child(description)
@@ -84,7 +84,8 @@ func go_back():
 		MainHandler.open_collection = null
 		queue_free()
 
-func update_translation(_locale):
+## Updates the initialized part selectors and descriptions to the current locale
+func update_translation(locale: String):
 	tab_container.set_tab_title(0, tr("Parts"))
 	tab_container.set_tab_title(1, tr("Skins"))
 	
@@ -97,13 +98,12 @@ func update_translation(_locale):
 		
 		var part_prop = TypesLoader.part_properties.get(description.name)
 		
-		var i = 0
 		var desc_text := tr(part_prop.name) + "\n"
-		for prop in part_prop.properties_values:
-			if prop != 0:
-				var text = "Part_Tooltip_"+MachinePartProperties.get_property_name(i, 0, true)
-				desc_text += TranslationHandler.translate_string(text, [prop]) + "\n"
-			i += 1
+		for prop in part_prop.properties.keys():
+			var val = part_prop.properties[prop]
+			if val != 0:
+				var text = "Part_Tooltip_"+MachineProperties.get_property_name(prop)
+				desc_text += TranslationHandler.translate_string(text, [val]) + "\n"
 		description.text = desc_text
 
 static func create_new(node: Node) -> Collection:

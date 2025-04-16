@@ -35,7 +35,7 @@ func _process(delta):
 		if !picked_up and is_connected_to_connector:
 			# Set rotations and positions for the part connector
 			if connected_to_connector.rotation != 0:
-				parent.rotation = -connected_to_connector.rotation
+				parent.rotation = connected_to_connector.rotation
 				parent.position = connected_to_connector.global_position
 				parent.position.y += connected_to_connector.global_position.y - global_position.y
 				parent.position.x += connected_to_connector.global_position.x - global_position.x

@@ -14,7 +14,7 @@ config/name="Machine Maker"
 config/name_localized={
 "fa_IR": "ماشین ساز"
 }
-config/version="0.1.1"
+config/version="0.1.2"
 run/main_scene="res://Scenes/Main Menu/Main.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false

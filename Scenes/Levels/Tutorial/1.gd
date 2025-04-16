@@ -11,16 +11,16 @@ func _ready():
 	await display_text.writing_finished
 	machine.show()
 	display_text.is_up = true
-	display_text.text(["Tutorial_1-4"])
+	display_text.text(["Tutorial_1-4", "Tutorial_1-5"])
 	await display_text.writing_finished
 	part_f1.show()
 	part_b1.show()
 	display_text.is_up = false
-	display_text.text(["Tutorial_1-5", "Tutorial_1-6", "Tutorial_1-7",
-	"Tutorial_1-8", "Tutorial_1-9", "Tutorial_1-10", "Tutorial_1-11"])
+	display_text.text(["Tutorial_1-6", "Tutorial_1-7", "Tutorial_1-8",
+	"Tutorial_1-9", "Tutorial_1-10", "Tutorial_1-11", "Tutorial_1-12", "Tutorial_1-13"])
 	await display_text.writing_finished
 	await machine.connectors[0].connection_changed
 	win_area.show()
 	display_text.is_up = true
-	display_text.text(["Tutorial_1-12", "Tutorial_1-13", "Tutorial_1-14"])
+	display_text.text(["Tutorial_1-14", "Tutorial_1-15", "Tutorial_1-16"])
 	await display_text.writing_finished

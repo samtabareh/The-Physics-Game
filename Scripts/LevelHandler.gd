@@ -69,7 +69,7 @@ func load_levels(dir: DirAccess):
 
 func next_level() -> LevelData:
 	var next = Levels[current_level.Category].get(current_level.Id+1)
-	if next == null: push_error("No other level exists")
+	#if next == null: push_error("No other level exists")
 	return next
 
 func get_level_from_path(path : String) -> LevelData:

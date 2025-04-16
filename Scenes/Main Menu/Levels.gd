@@ -24,18 +24,20 @@ func _ready():
 			var button: Button = $"CanvasLayer/Game/Main Menu".duplicate()
 			button.name = category+" "+leveldata.Name.get_slice(".tscn", 0)
 			
-			# If the level isnt unlocked, then disable the button
+			# Disable if the level isnt unlocked
 			button.disabled = !LevelHandler.is_level_unlocked(leveldata)
+			
+			# Make button green if beaten already
+			if LevelHandler.is_level_beaten(leveldata): button.modulate = Color("light green")
 			
 			# Set its text in case its not being translated
 			button.text = button.name
 			
-			# Because its a dupe of exit, its connected to the exit method
-			# so we disconnect it and connect it to the right one
+			# Because its a duplicate of main menu, its connected to the main menu method
 			button.pressed.disconnect(_on_main_menu_pressed)
 			button.pressed.connect(level_pressed.bind(leveldata))
 			
-			# And adding a dev func to the button to unlock it easily
+			# Adding a dev function
 			button.gui_input.connect(button_input.bind(leveldata))
 			
 			sort.add_child(button)

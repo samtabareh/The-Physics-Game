@@ -1,12 +1,54 @@
-[gd_resource type="Resource" script_class="MachinePartProperties" load_steps=3 format=3 uid="uid://rmevrl8vr7kr"]
+[gd_resource type="Resource" script_class="MachinePartProperties" load_steps=8 format=3 uid="uid://rmevrl8vr7kr"]
 
 [ext_resource type="Script" uid="uid://bnwnjb5mrfq6d" path="res://Resources/Parts Properties/MachinePartProperties.gd" id="1_d8ps1"]
+[ext_resource type="Texture2D" uid="uid://cpn58bl1fkxo8" path="res://Textures/Objects/Parts/A/Balloon1.png" id="2_vcesl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbrra"]
+atlas = ExtResource("2_vcesl")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymulw"]
+atlas = ExtResource("2_vcesl")
+region = Rect2(0, 33, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk2ld"]
+atlas = ExtResource("2_vcesl")
+region = Rect2(0, 66, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nur5g"]
+atlas = ExtResource("2_vcesl")
+region = Rect2(0, 99, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d8ps1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbrra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymulw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk2ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nur5g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [resource]
 script = ExtResource("1_d8ps1")
 name = "MP_A_1"
 sprite_frames = SubResource("SpriteFrames_d8ps1")
-properties_values = [-10, 0, 0, 0]
+properties = {
+0: -3,
+1: 0,
+2: 0,
+3: 0,
+4: 10,
+5: 50
+}
 metadata/_custom_type_script = "uid://bnwnjb5mrfq6d"

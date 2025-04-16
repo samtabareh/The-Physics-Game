@@ -27,6 +27,7 @@ var next_level: String
 var level_parts: Array[MachinePart] = []
 var time_spent := 0.0
 var score := 3.0
+var has_level_ended := false
 
 func _ready():
 	if !next_scene:
@@ -101,13 +102,16 @@ func report_missing(type: int, missing_name: String):
 		push_error("%s not set in level %s %s" % [missing_name, level_data.Category, level_data.Name])
 
 func has_player_won(has_won: bool = win_area.machine_in_area):
+	if has_level_ended: return
+	has_level_ended = true
+	
 	var extra_time: float = abs(level_timer.time_left-1)
 	level_timer.stop()
 	
 	# The player won
 	if has_won:
 		# Calculates the score of the player
-		var leftover_joules = machine.get_property(machine.JOULES_STORED)
+		var leftover_joules = machine.machine_properties.get_property(MachineProperties.JOULES_STORED)
 		var leftover_time : float = time_spent + extra_time - avg_time
 		
 		if leftover_joules <= time_spent / 10: score -= 1
@@ -130,6 +134,5 @@ func has_player_won(has_won: bool = win_area.machine_in_area):
 		LevelHandler.beat_level(level_data, score)
 		
 		if hud: hud.show_end_level_menu(true, score, mm_coins)
-	
 	# The player didnt win
 	else: if hud: hud.show_end_level_menu(false)
