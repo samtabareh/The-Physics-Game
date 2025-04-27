@@ -22,6 +22,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_1a5la")
 font_size = 12
 
 [node name="Machine" type="RigidBody2D" node_paths=PackedStringArray("wheels", "camera")]
+gravity_scale = 0.9
 script = ExtResource("1_17y47")
 wheels = [NodePath("Wheel1/Wheel"), NodePath("Wheel2/Wheel")]
 camera = NodePath("Camera2D")

@@ -2,6 +2,7 @@ class_name WinArea extends Area2D
 
 signal machine_entered(machine: Machine)
 
+## Only flips in-game, not in the editor
 @export var flip_horizontal := false :
 	set(v):
 		$Sprite2D.flip_h = v
